@@ -1,14 +1,16 @@
 import 'package:ev_project/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'components/;ogindetails.dart';
-import 'components/background_desgin.dart';
-import 'components/bottomcontainer.dart';
+import '../screens/Login_Screen/components/;ogindetails.dart';
+import '../screens/Login_Screen/components/background_desgin.dart';
+import '../screens/Login_Screen/components/bottomcontainer.dart';
 
 
 
-class LogIN extends StatelessWidget {
-  const LogIN({Key? key}) : super(key: key);
+
+
+class SignIN extends StatelessWidget {
+  const SignIN({Key? key}) : super(key: key);
 
 
   @override
@@ -24,7 +26,7 @@ class LogIN extends StatelessWidget {
             children: [
               BackgroundDesign(),
               LoginDetails(),
-              BottomContainer(title: 'Log In', subtitle: 'Sign Up',),
+              BottomContainer(title: 'Sign Up', subtitle: 'Log In',),
 
             ],
           ),
