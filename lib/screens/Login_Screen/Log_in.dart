@@ -46,6 +46,7 @@ class _LogINState extends State<LogIN> {
     }).onError((error, stackTrace) {
       Utils().toastMessage(error.toString());
       setState(() {
+        passwordController.clear();
         loading = false;
       });
     });
