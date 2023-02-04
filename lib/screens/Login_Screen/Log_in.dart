@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 
 import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
+import '../../utils/utils.dart';
+import '../homescreen/homescreen.dart';
 
 
 
@@ -18,6 +20,7 @@ class LogIN extends StatefulWidget {
 }
 
 class _LogINState extends State<LogIN> {
+  bool loading = false;
   final formkey = GlobalKey<FormState>();
   final emailController  = TextEditingController();
   final passwordController  = TextEditingController();
@@ -27,6 +30,25 @@ class _LogINState extends State<LogIN> {
   void dispose(){
     emailController.dispose();
     passwordController.dispose();
+  }
+
+  void  login() {
+    setState(() {
+      loading = true;
+    });
+    _auth.signInWithEmailAndPassword(
+        email: emailController.text.toString(),
+        password: passwordController.text.toString()).then((value) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),));
+      setState(() {
+        loading = false;
+      });
+    }).onError((error, stackTrace) {
+      Utils().toastMessage(error.toString());
+      setState(() {
+        loading = false;
+      });
+    });
   }
 
   @override
@@ -144,8 +166,7 @@ class _LogINState extends State<LogIN> {
 
                 BottomContainer(title: 'Log In', onTap: () {
                   if(formkey.currentState!.validate()){
-
-
+                    login();
                   }
 
                 }, subtitle: 'Sign In', account: "Don't have an account?",),
