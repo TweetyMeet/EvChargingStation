@@ -41,12 +41,12 @@ class _SignInState extends State<SignIn> {
         email: emailController.text.toString(),
         password: passwordController.text.toString()).then((value) {
       setState(() {
-        loading = true;
+        loading = false;
       });
     }).onError((error, stackTrace) {
       Utils().toastMessage(error.toString());
       setState(() {
-        loading = true;
+        loading = false;
       });
     });
   }
