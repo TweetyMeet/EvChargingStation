@@ -94,6 +94,7 @@ class _LogINState extends State<LogIN> {
 
                                 ),
                               ),
+                              SizedBox(height: 10,),
                               Container(
                                 child: ClayContainer(
                                   color: white,
@@ -144,9 +145,11 @@ class _LogINState extends State<LogIN> {
 
                 BottomContainer(title: 'Log In', onTap: () {
                   if(formkey.currentState!.validate()){
+
+
                   }
 
-                }, subtitle: 'Sign In',),
+                }, subtitle: 'Sign In', account: "Don't have an account?",),
 
               ],
             ),

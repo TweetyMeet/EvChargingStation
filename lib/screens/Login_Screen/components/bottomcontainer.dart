@@ -2,17 +2,22 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:ev_project/Sign_Up/SignUP.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/homescreen/homescreen.dart';
+import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:flutter/material.dart';
 
 
 
 class BottomContainer extends StatefulWidget {
+  final bool  loading;
   final  String title;
   final VoidCallback onTap;
   final String  subtitle;
+  final String account;
 
   
-  const BottomContainer({Key? key, required this.title, required this.onTap, required this.subtitle,}) : super(key: key);
+  const BottomContainer({Key? key,this.loading = false,
+    required this.title,
+    required this.onTap, required this.subtitle, required this.account,}) : super(key: key);
 
   @override
   State<BottomContainer> createState() => _BottomContainerState();
@@ -53,20 +58,26 @@ class _BottomContainerState extends State<BottomContainer> {
                       child: Padding(
                         padding:   EdgeInsets.symmetric(vertical: appPadding/2,
                             horizontal:appPadding *2 ),
-                        child: Text(widget.title,style: TextStyle(
+                        child: widget.loading ? CircularProgressIndicator(color: black,) :
+                        Text(widget.title,style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 17
                         ),),
                       ),
                     ),
+                  SizedBox(height: 15,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Don't have an account?",style: TextStyle(color: black),),
+                      Text(widget.account,style: TextStyle(color: black),),
                       TextButton(onPressed: (){
+                          if(widget.subtitle.toString() == 'Sign In'){
 
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context)=> SignIn()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn() ));
+
+                          }else {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> LogIN() ));
+                          }
                       },
                           child: Text(widget.subtitle,style: TextStyle(color: black),)
                       ),
