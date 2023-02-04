@@ -6,8 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../screens/Login_Screen/components/background_desgin.dart';
-import '../screens/Login_Screen/components/bottomcontainer.dart';
+import '../../components/background_desgin.dart';
+import '../../components/bottomcontainer.dart';
+
 
 
 

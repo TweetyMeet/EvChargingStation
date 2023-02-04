@@ -1,9 +1,9 @@
 import 'package:clay_containers/clay_containers.dart';
-import 'package:ev_project/Sign_Up/SignUP.dart';
 import 'package:ev_project/constants/constants.dart';
-import 'package:ev_project/homescreen/homescreen.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/Sign_Up/SignUP.dart';
 
 
 

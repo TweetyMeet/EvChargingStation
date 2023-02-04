@@ -1,13 +1,12 @@
 import 'package:clay_containers/widgets/clay_container.dart';
-import 'package:ev_project/Sign_Up/SignUP.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'components/;ogindetails.dart';
-import 'components/background_desgin.dart';
-import 'components/bottomcontainer.dart';
+import '../../components/background_desgin.dart';
+import '../../components/bottomcontainer.dart';
+
 
 
 
