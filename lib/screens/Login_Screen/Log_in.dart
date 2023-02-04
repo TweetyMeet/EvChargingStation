@@ -1,13 +1,11 @@
 import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:ev_project/constants/constants.dart';
-import 'package:ev_project/screens/homescreen/homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
-import '../../utils/utils.dart';
 
 
 
@@ -20,7 +18,6 @@ class LogIN extends StatefulWidget {
 }
 
 class _LogINState extends State<LogIN> {
-  bool loading = false;
   final formkey = GlobalKey<FormState>();
   final emailController  = TextEditingController();
   final passwordController  = TextEditingController();
@@ -31,26 +28,6 @@ class _LogINState extends State<LogIN> {
     emailController.dispose();
     passwordController.dispose();
   }
-  void  Login() {
-    setState(() {
-      loading = true;
-    });
-    _auth.signInWithEmailAndPassword(
-        email: emailController.text.toString(),
-        password: passwordController.text.toString()).then((value) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),));
-      setState(() {
-        loading = false;
-      });
-    }).onError((error, stackTrace) {
-      Utils().toastMessage(error.toString());
-      setState(() {
-        passwordController.clear();
-        loading = false;
-      });
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +145,6 @@ class _LogINState extends State<LogIN> {
                 BottomContainer(title: 'Log In', onTap: () {
                   if(formkey.currentState!.validate()){
 
-                    Login();
 
                   }
 
