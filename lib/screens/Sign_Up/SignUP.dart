@@ -40,6 +40,7 @@ class _SignInState extends State<SignIn> {
     _auth.createUserWithEmailAndPassword(
         email: emailController.text.toString(),
         password: passwordController.text.toString()).then((value) {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => LogIN(),));
       setState(() {
         loading = false;
       });
