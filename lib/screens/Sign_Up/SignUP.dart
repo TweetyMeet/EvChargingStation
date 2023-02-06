@@ -26,6 +26,8 @@ class _SignInState extends State<SignIn> {
   final formkey = GlobalKey<FormState>();
   final emailController  = TextEditingController();
   final passwordController  = TextEditingController();
+  final emailfocusnode  = FocusNode();
+  final passwordfocusnode = FocusNode();
   FirebaseAuth _auth = FirebaseAuth.instance;
 
    @override
@@ -100,6 +102,10 @@ class _SignInState extends State<SignIn> {
                                           child: TextFormField(
 
                                             controller: emailController,
+                                            focusNode: emailfocusnode,
+                                            onFieldSubmitted: (value){
+                                               Utils.fieldFocus(context,emailfocusnode , passwordfocusnode);
+                                            },
                                             decoration: InputDecoration(
                                               hintText: 'Email',
                                               border: InputBorder.none,
@@ -128,6 +134,10 @@ class _SignInState extends State<SignIn> {
                                           child: TextFormField(
                                             keyboardType: TextInputType.text,
                                             controller: passwordController,
+                                            focusNode: passwordfocusnode,
+                                            onFieldSubmitted: (value){
+
+                                            },
                                             obscureText: true,
                                             decoration: InputDecoration(
                                               hintText: 'Password',

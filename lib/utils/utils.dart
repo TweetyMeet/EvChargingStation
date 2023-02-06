@@ -17,6 +17,9 @@ class Utils {
     );
   }
 
-
+   static void fieldFocus(BuildContext context, FocusNode curretNode,FocusNode nextFocus){
+       curretNode.unfocus();
+       FocusScope.of(context).requestFocus(nextFocus);
+   }
 
 }

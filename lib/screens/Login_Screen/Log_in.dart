@@ -1,5 +1,6 @@
 import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:ev_project/constants/constants.dart';
+import 'package:ev_project/screens/forgotpassword/forgot_pass.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +40,7 @@ class _LogINState extends State<LogIN> {
     _auth.signInWithEmailAndPassword(
         email: emailController.text.toString(),
         password: passwordController.text.toString()).then((value) {
+
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),));
       setState(() {
         loading = false;
@@ -152,12 +154,17 @@ class _LogINState extends State<LogIN> {
 
                       Padding(
                         padding: const EdgeInsets.only(top: appPadding /2),
-                        child: Text('Forgot Password?',style: TextStyle(
-                            fontSize: 15,
-                            color: black.withOpacity(0.6),
-                            fontWeight: FontWeight.w600,
-                            decoration: TextDecoration.underline
-                        ),),
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Forgotpassword() ));
+                          },
+                          child: Text('Forgot Password?',style: TextStyle(
+                              fontSize: 15,
+                              color: black.withOpacity(0.6),
+                              fontWeight: FontWeight.w600,
+                              decoration: TextDecoration.underline
+                          ),),
+                        ),
                       ),
 
                     ]
