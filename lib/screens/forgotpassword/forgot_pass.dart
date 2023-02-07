@@ -69,7 +69,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
             height: size.height,
             child: Stack(
               children: [
-                BackgroundDesign(),
+                BackgroundDesign(back_button: true,),
                 Positioned(
                   top: size.height*0.3,
                   left: 0,

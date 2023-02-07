@@ -68,7 +68,7 @@ class _SignInState extends State<SignIn> {
               height: size.height,
               child: Stack(
                 children: [
-                  BackgroundDesign(),
+                  BackgroundDesign(back_button: false,),
                   Positioned(
                     top: size.height * 0.3,
                     left: 0,

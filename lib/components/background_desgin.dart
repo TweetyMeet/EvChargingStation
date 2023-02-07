@@ -4,7 +4,8 @@ import 'package:ev_project/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundDesign extends StatelessWidget {
-  const BackgroundDesign({Key? key}) : super(key: key);
+  final bool back_button;
+  const BackgroundDesign({Key? key, required this.back_button}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +138,11 @@ class BackgroundDesign extends StatelessWidget {
                 left: size.width*0.52,
                 bottom: 0,
 
-              )
+              ),
+              back_button ?
+              Positioned(top: 20,child: IconButton(onPressed: () => Navigator.of(context).pop(), icon: Icon(Icons.arrow_back_ios_new,color: Colors.black,)))
+                  :
+                  SizedBox(),
             ],
           ),
         )
