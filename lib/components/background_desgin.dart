@@ -11,6 +11,7 @@ class BackgroundDesign extends StatelessWidget {
     Size size  = MediaQuery.of(context).size;
     return Stack(
       children: [
+
         Container(
           color: white,
           height: size.height*0.4,
