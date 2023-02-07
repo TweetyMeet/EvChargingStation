@@ -1,4 +1,5 @@
 
+import 'package:clay_containers/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:clay_containers/widgets/clay_container.dart';
@@ -11,7 +12,8 @@ import '../../utils/utils.dart';
 
 
 class Forgotpassword extends StatefulWidget {
-  const Forgotpassword({Key? key}) : super(key: key);
+  final bool  loading;
+  const Forgotpassword({Key? key,  this.loading = false}) : super(key: key);
 
   @override
   State<Forgotpassword> createState() => _ForgotpasswordState();
@@ -70,6 +72,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
             child: Stack(
               children: [
                 BackgroundDesign(back_button: true,),
+
                 Positioned(
                   top: size.height*0.3,
                   left: 0,
@@ -85,6 +88,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                               fontSize: 20,
                               color: black.withOpacity(0.6),
                               fontWeight: FontWeight.w800),),
+                          SizedBox(height: 20,),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: appPadding),
                             child: Form(
@@ -127,16 +131,52 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                     ),
                   ),
                 ),
+                Positioned(
+                  bottom: 200,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    child: Column(
+                      children: [
+                        SizedBox(height: size.height*0.07,),
+                        InkWell(
+                          onTap: () {
+                            if (formkey.currentState!.validate()) {
 
-                BottomContainer(title: 'Recover', onTap: () {
-                  if(formkey.currentState!.validate()){
-                    forgot();
-                  }
+                            }
+                          },
+                          child: ClayContainer(
+                            color: white,
+                            depth: 20,
+                            borderRadius: 30,
+                            curveType: CurveType.convex,
+                            child: Padding(
+                              padding:   EdgeInsets.symmetric(vertical: appPadding/2,
+                                  horizontal:appPadding *2 ),
+                              child: widget.loading ? CircularProgressIndicator(color: black,) :
+                              Text('Recover',style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 17
+                              ),),
+                            ),
+                          ),
+                        ),
 
-                }, subtitle: '', account: '', ),
+
+                      ],
+                    ),
+
+                  ),
+                ),
+
+
+
+
 
               ],
             ),
+
+
           ),
         ),
 
