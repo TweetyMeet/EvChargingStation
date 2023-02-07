@@ -1,3 +1,4 @@
+import 'package:clay_containers/constants.dart';
 import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/forgotpassword/forgot_pass.dart';
@@ -8,13 +9,15 @@ import 'package:flutter/services.dart';
 import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
 import '../../utils/utils.dart';
+import '../Sign_Up/SignUP.dart';
 import '../homescreen/homescreen.dart';
 
 
 
 
 class LogIN extends StatefulWidget {
-  const LogIN({Key? key}) : super(key: key);
+  final bool  loading;
+  const LogIN({Key? key, this.loading = false}) : super(key: key);
 
   @override
   State<LogIN> createState() => _LogINState();
@@ -153,7 +156,7 @@ class _LogINState extends State<LogIN> {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(top: appPadding /2),
+                        padding: const EdgeInsets.only(top: appPadding / 2,left: 10),
                         child: GestureDetector(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> Forgotpassword() ));
@@ -172,12 +175,53 @@ class _LogINState extends State<LogIN> {
               ),
             ),
 
-                BottomContainer(title: 'Log In', onTap: () {
-                  if(formkey.currentState!.validate()){
-                    login();
-                  }
+            Positioned(
+              bottom: 65,
+              left: 0,
+              right: 0,
+              child: Container(
+                child: Column(
+                  children: [
+                    SizedBox(height: size.height*0.07,),
+                    InkWell(
+                      onTap: () {
+                        if (formkey.currentState!.validate()) {
+                          login();
+                        }
+                      },
+                      child: ClayContainer(
+                        color: white,
+                        depth: 20,
+                        borderRadius: 30,
+                        curveType: CurveType.convex,
+                        child: Padding(
+                          padding:   EdgeInsets.symmetric(vertical: appPadding/2,
+                              horizontal:appPadding *2 ),
+                          child: widget.loading ? CircularProgressIndicator(color: black,) :
+                          Text('Log In',style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 17
+                          ),),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Don't have an account?",style: TextStyle(color: black),),
+                        TextButton(onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn() ));
+                        },
+                            child: Text('Sign in',style: TextStyle(color: black),)
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
 
-                }, subtitle: 'Sign In', account: "Don't have an account?",),
+              ),
+            ),
 
               ],
             ),

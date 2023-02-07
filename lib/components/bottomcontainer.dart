@@ -4,6 +4,7 @@ import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/Sign_Up/SignUP.dart';
+import '../screens/forgotpassword/forgot_pass.dart';
 
 
 
@@ -33,12 +34,8 @@ class _BottomContainerState extends State<BottomContainer> {
       bottom: 0,
         left: 0,
         right: 0,
-        child: InkWell(
-          onTap: widget.onTap,
-
           child: Container(
             child: ClayContainer(
-
               color: white,
               height: size.height * 0.3,
               depth: 60,
@@ -50,21 +47,24 @@ class _BottomContainerState extends State<BottomContainer> {
               child: Column(
                 children: [
                   SizedBox(height: size.height*0.07,),
-              ClayContainer(
-                      color: white,
-                      depth: 20,
-                      borderRadius: 30,
-                      curveType: CurveType.convex,
-                      child: Padding(
-                        padding:   EdgeInsets.symmetric(vertical: appPadding/2,
-                            horizontal:appPadding *2 ),
-                        child: widget.loading ? CircularProgressIndicator(color: black,) :
-                        Text(widget.title,style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 17
-                        ),),
+              InkWell(
+                onTap: widget.onTap,
+                child: ClayContainer(
+                        color: white,
+                        depth: 20,
+                        borderRadius: 30,
+                        curveType: CurveType.convex,
+                        child: Padding(
+                          padding:   EdgeInsets.symmetric(vertical: appPadding/2,
+                              horizontal:appPadding *2 ),
+                          child: widget.loading ? CircularProgressIndicator(color: black,) :
+                          Text(widget.title,style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 17
+                          ),),
+                        ),
                       ),
-                    ),
+              ),
                   SizedBox(height: 15,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -82,12 +82,12 @@ class _BottomContainerState extends State<BottomContainer> {
                           child: Text(widget.subtitle,style: TextStyle(color: black),)
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
 
           ),
-        ));
+        );
   }
 }
