@@ -139,13 +139,9 @@ class BackgroundDesign extends StatelessWidget {
                 bottom: 0,
 
               ),
-              back_button ?
-              Positioned(top: 30,child: IconButton(onPressed: () => Navigator.of(context).pop(), icon: Icon(Icons.arrow_back_ios_new,color: Colors.black,)))
-                  :
-                  SizedBox(),
             ],
           ),
-        )
+        ),
       ],
     );
   }
