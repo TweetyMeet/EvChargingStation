@@ -71,9 +71,9 @@ class _BottomContainerState extends State<BottomContainer> {
                     children: [
                       Text(widget.account,style: TextStyle(color: black),),
                       TextButton(onPressed: (){
-                          if(widget.subtitle.toString() == 'Sign In'){
+                          if(widget.subtitle.toString() == 'Sign Up'){
 
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn() ));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp() ));
 
                           }else {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> LogIN() ));

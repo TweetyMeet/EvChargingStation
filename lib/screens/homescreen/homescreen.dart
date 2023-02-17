@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../components/SearchBar.dart';
+
 
 
 class  HomePage extends StatefulWidget {
@@ -15,21 +17,23 @@ class  HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(onPressed: (){
-            FirebaseAuth _auth = FirebaseAuth.instance;
-            _auth.signOut().then((value) => {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIN()))
-              
-            });
-            
-          }, icon: Icon(Icons.arrow_back_ios_outlined))
-        ],
-      ),
-      body: Center(
-        child: Text('Hi'),
+    return SafeArea(
+      child: Scaffold(
+          // actions: [
+          //   IconButton(onPressed: (){
+          //     FirebaseAuth _auth = FirebaseAuth.instance;
+          //     _auth.signOut().then((value) => {
+          //       Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIN()))
+          //
+          //     });
+          //
+          //   }, icon: Icon(Icons.arrow_back_ios_outlined))
+          // ],
+        body:Column(
+          children: [
+            SearchBar(),
+          ],
+        ),
       ),
     );
   }

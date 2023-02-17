@@ -10,6 +10,7 @@ import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
 import '../../utils/utils.dart';
 import '../Sign_Up/SignUP.dart';
+import '../bottom_navigation_bar/bottom_nav_bar.dart';
 import '../homescreen/homescreen.dart';
 
 
@@ -44,7 +45,7 @@ class _LogINState extends State<LogIN> {
         email: emailController.text.toString(),
         password: passwordController.text.toString()).then((value) {
 
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Bottom_Nav_Bar(),));
       setState(() {
         loading = false;
       });
@@ -211,9 +212,9 @@ class _LogINState extends State<LogIN> {
                       children: [
                         Text("Don't have an account?",style: TextStyle(color: black),),
                         TextButton(onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn() ));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp() ));
                         },
-                            child: Text('Sign in',style: TextStyle(color: black),)
+                            child: Text('Sign Up',style: TextStyle(color: black),)
                         ),
                       ],
                     ),

@@ -14,14 +14,14 @@ import '../../components/bottomcontainer.dart';
 
 
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   bool loading = false;
   final formkey = GlobalKey<FormState>();
   final emailController  = TextEditingController();
@@ -35,7 +35,7 @@ class _SignInState extends State<SignIn> {
     emailController.dispose();
     passwordController.dispose();
   }
-  void  signin() {
+  void  signup() {
     setState(() {
       loading = true;
     });
@@ -164,11 +164,11 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
 
-                  BottomContainer(title: 'Sign In',
+                  BottomContainer(title: 'Sign Up',
                     loading: loading,
                     onTap: () {
                       if (formkey.currentState!.validate()) {
-                        signin();
+                        signup();
                       }
                     }, subtitle: 'Log IN', account: 'Already have an account?',),
                 ],

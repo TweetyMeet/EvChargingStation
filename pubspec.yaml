@@ -44,6 +44,8 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_storage: ^11.0.10
   fluttertoast: ^8.1.2
+  google_nav_bar: ^5.0.6
+  google_maps_flutter: ^2.2.3
 
 
 dev_dependencies:

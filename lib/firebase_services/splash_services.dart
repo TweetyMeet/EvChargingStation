@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/Login_Screen/Log_in.dart';
+import '../screens/bottom_navigation_bar/bottom_nav_bar.dart';
 
 class SplashServices {
 
@@ -16,7 +17,7 @@ class SplashServices {
       final user = auth.currentUser;
       if(user != null){
         Timer(Duration(seconds: 4),  ()=>
-            Navigator.push(context,MaterialPageRoute(builder: (context)=>HomePage())));
+            Navigator.push(context,MaterialPageRoute(builder: (context)=>Bottom_Nav_Bar())));
       }else{
       Timer(Duration(seconds: 4),  ()=>
           Navigator.push(context,MaterialPageRoute(builder: (context)=>LogIN())));
