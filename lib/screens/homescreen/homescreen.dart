@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../components/OwnerEvVehiclesList.dart';
 import '../../components/SearchBar.dart';
 
 
@@ -32,6 +33,14 @@ class _HomePageState extends State<HomePage> {
         body:Column(
           children: [
             SearchBar(),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+                width: 400,
+                  height: 200,
+                  child: OwnerEvVehiclesList(),
+            ),
           ],
         ),
       ),
