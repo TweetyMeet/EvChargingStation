@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import '../profile_screen.dart';
-import '../search_screen.dart';
-import '../tag_screen.dart';
+import '../profile_screen/profile_screen.dart';
+import '../search_screen/search_screen.dart';
+import '../tag_screen/tag_screen.dart';
 
 class Bottom_Nav_Bar extends StatefulWidget {
   const Bottom_Nav_Bar({Key? key}) : super(key: key);

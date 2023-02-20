@@ -7,7 +7,6 @@ import 'package:ev_project/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import '../../components/background_desgin.dart';
-import '../../components/bottomcontainer.dart';
 import '../../utils/utils.dart';
 
 
