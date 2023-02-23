@@ -1,8 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+// import '../../Model/station_api_model.dart';
+
+// Map? mapResponse;
+// List? listResponse;
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -12,6 +19,23 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+
+  // Future apicall() async{
+  //   http.Response response;
+  //   response = await http.get(
+  //       Uri.parse('https://developer.nrel.gov/api/alt-fuel-stations/v1.json?api_key=DEMO_KEY&status=all,E,P,T&access=private&fuel_type=ELEC')
+  //   );
+  //   if (response.statusCode == 200){
+  //     setState(() {
+  //       mapResponse = json.decode(response.body);
+  //       listResponse = mapResponse!['fuel_stations'];
+  //     });
+  //   }else{
+  //     setState(() {
+  //       CircularProgressIndicator();
+  //     });
+  //   }
+  // }
 
   Completer<GoogleMapController> Controller = Completer();
 
@@ -41,8 +65,14 @@ static final CameraPosition _kLake = CameraPosition(
     ),
   ];
 
+  // @override
+  // void dax(){
+  //
+  // }
+
   @override
   void initState(){
+    // apicall();
     super.initState();
     marker.addAll(list);
   }
@@ -52,6 +82,9 @@ static final CameraPosition _kLake = CameraPosition(
     return Scaffold(
       body: GoogleMap(
         initialCameraPosition: _kLake,
+        onMapCreated: (GoogleMapController controller){
+          Controller.complete(controller);
+        },
         mapType: MapType.normal,
         markers: Set<Marker>.of(marker),
       ),
@@ -68,7 +101,21 @@ static final CameraPosition _kLake = CameraPosition(
 
         });
       },
-        child: Icon(Icons.my_location),
+        child: Icon(Icons.my_location_outlined),
+        // FutureBuilder(
+        //   future: apicall(),
+        //   builder: (context, snapshot) {
+        //     ListView.builder(
+        //       itemCount: listResponse!.length,
+        //         itemBuilder: (context, index) {
+        //           Marker(
+        //             markerId: MarkerId(index.toString()),
+        //             position: LatLng(listResponse![index]['latitude'],listResponse![index]['longitude']),
+        //           );
+        //         },
+        //     );
+        //   },
+        // ),
       ),
     );
   }

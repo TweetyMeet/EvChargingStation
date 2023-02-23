@@ -23,14 +23,14 @@ class _Bottom_Nav_BarState extends State<Bottom_Nav_Bar> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        color: Colors.black,
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GNav(
-            backgroundColor: Colors.black,
-            tabBackgroundColor: Colors.grey.shade800,
-            color: Colors.white,
-            activeColor: Colors.white,
+            backgroundColor: Colors.white,
+            // tabBackgroundColor: Colors.grey.shade800,
+            color: Colors.black,
+            activeColor: Color(0xff25B386),
             padding: EdgeInsets.all(15),
             gap: 10,
             onTabChange: (value) {
@@ -39,10 +39,10 @@ class _Bottom_Nav_BarState extends State<Bottom_Nav_Bar> {
               });
             },
             tabs: [
-              GButton(icon: Icons.home_filled,text: 'Home'),
-              GButton(icon: Icons.search,text: 'Search'),
-              GButton(icon: Icons.bookmark_border,text: 'Tag'),
-              GButton(icon: Icons.account_circle_outlined,text: 'Profil'),
+              GButton(icon: Icons.home_filled,),
+              GButton(icon: Icons.search),
+              GButton(icon: Icons.bookmark_border),
+              GButton(icon: Icons.person),
             ],
           ),
         ),
