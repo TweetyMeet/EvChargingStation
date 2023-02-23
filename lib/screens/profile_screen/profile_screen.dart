@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             CircleAvatar(
               radius: 40,
-              backgroundImage:  AssetImage("assets/PHOTO.png")),
+              backgroundImage:  AssetImage("")),
 
             SizedBox(height: 10,),
             Text('Meet Pansuriya',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
