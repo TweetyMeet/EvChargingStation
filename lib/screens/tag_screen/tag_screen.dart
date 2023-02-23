@@ -16,6 +16,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
+
        body: Padding(
          padding: const EdgeInsets.all(8.0),
          child :Column(
