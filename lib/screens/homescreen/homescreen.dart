@@ -235,8 +235,8 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.only(left: 15, top: 15),
                               child: Container(
-                                width: 110,
-                                height: 110,
+                                width: 100,
+                                height: 100,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
