@@ -15,7 +15,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
        body: Padding(
          padding: const EdgeInsets.all(8.0),
          child :Column(
@@ -82,6 +82,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                        height: 250,
                        width: 250,
                        child: Card(
+                         elevation: 7,
                          shape: RoundedRectangleBorder(
                            side: BorderSide(
                              color: Colors.greenAccent,
@@ -104,6 +105,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                            width: 250,
 
                            child: Card(
+                             elevation: 7,
                              shape: RoundedRectangleBorder(
                                side: BorderSide(
                                  color: Colors.greenAccent,
@@ -125,6 +127,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                            height: 250,
                            width: 250,
                            child: Card(
+                             elevation: 7,
                              shape: RoundedRectangleBorder(
                                side: BorderSide(
                                  color: Colors.greenAccent,
