@@ -127,7 +127,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                            height: 250,
                            width: 250,
                            child: Card(
-                             elevation: 7gc,
+                             elevation: 7,
                              shape: RoundedRectangleBorder(
                                side: BorderSide(
                                  color: Colors.greenAccent,
