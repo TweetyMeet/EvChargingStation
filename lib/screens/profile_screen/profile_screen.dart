@@ -160,6 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> LogIN()));
 
                   },
+
                 child: Text('Log Out',style: TextStyle(color: Colors.white),),
               )
             )
