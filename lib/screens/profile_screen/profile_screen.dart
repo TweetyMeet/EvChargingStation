@@ -17,6 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.white70,
         body: Column(
           children: [
+            SizedBox(height: 10,),
             Row(children :[
               SizedBox(width: 16,),
               Icon(Icons.arrow_back_ios_outlined),
@@ -24,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Text('Profile',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
             ],
             ),
+            SizedBox(height: 15,),
             CircleAvatar(
               radius: 40,
               backgroundImage:  AssetImage("assets/PHOTO.png")),
