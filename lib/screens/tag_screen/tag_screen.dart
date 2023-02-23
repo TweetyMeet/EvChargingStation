@@ -20,6 +20,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
          padding: const EdgeInsets.all(8.0),
          child :Column(
              children: [
+
              Row(
                children :[
                SizedBox(width: 16,),
