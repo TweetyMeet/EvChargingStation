@@ -20,16 +20,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // actions: [
-        //   IconButton(onPressed: (){
-        //     FirebaseAuth _auth = FirebaseAuth.instance;
-        //     _auth.signOut().then((value) => {
-        //       Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIN()))
-        //
-        //     });
-        //
-        //   }, icon: Icon(Icons.arrow_back_ios_outlined))
-        // ],
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,91 +97,97 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   width: 350,
                   height: 250,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
+                  // decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     borderRadius: BorderRadius.circular(20),
+                  //     boxShadow: [BoxShadow(color: Colors.grey,spreadRadius: 0,blurRadius: 0)]
+                  // ),
+                  child: Card(
+                    elevation: 7,
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [BoxShadow(color: Colors.grey,spreadRadius: 0,blurRadius: 0)]
-                  ),
-                  child: Stack(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Container(
-                              width: 250,
-                              height: 120,
-                              decoration: BoxDecoration(
-                                  color: Color(0xffCCE1F4),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 10, left: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'OLA',
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    Text(
-                                      'Electronic',
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    Text(
-                                      'Scooter',
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Container(
+                                width: 250,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffCCE1F4),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 10, left: 10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'OLA',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      Text(
+                                        'Electronic',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      Text(
+                                        'Scooter',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.location_on,
-                                  color: Color(0xffCCE1F4),
-                                ),
-                                Text(
-                                  '4750 Arbutus #312, Vancouver',
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Color(0xffCCE1F4),
+                                  ),
+                                  Text(
+                                    '4750 Arbutus #312, Vancouver',
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.bolt,
-                                  color: Color(0xffCCE1F4),
-                                ),
-                                Text(
-                                  'Type 2',
-                                  style: TextStyle(fontSize: 18, color: Colors.grey),
-                                ),
-                              ],
+                            SizedBox(
+                              height: 5,
                             ),
-                          ),
-                        ],
-                      ),
-                      Positioned(
-                        left: 130,
-                          child: Image(image: AssetImage('assets/images/bike_image-removebg-preview.png'))),
-                    ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.bolt,
+                                    color: Color(0xffCCE1F4),
+                                  ),
+                                  Text(
+                                    'Type 2',
+                                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          left: 130,
+                            child: Image(image: AssetImage('assets/images/bike_image-removebg-preview.png'))),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -220,115 +216,121 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Container(
                   width: 400,
-                  height: 240,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15, top: 15),
-                            child: Container(
-                              width: 110,
-                              height: 110,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/App_logo.png'),
-                                      fit: BoxFit.cover),
-                                  borderRadius: BorderRadius.circular(15)),
+                  height: 245,
+                  // decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     borderRadius: BorderRadius.circular(20)),
+                  child: Card(
+                    elevation: 7,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15, top: 15),
+                              child: Container(
+                                width: 110,
+                                height: 110,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/App_logo.png'),
+                                        fit: BoxFit.cover),
+                                    borderRadius: BorderRadius.circular(15)),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'ChargePoint',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.location_on,
-                                      color: Color(0xffCCE1F4),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      '451 Beach Crescent, \nBC V6Z 3H1',
-                                      style: TextStyle(fontWeight: FontWeight.w600,
-                                          overflow: TextOverflow.fade),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.directions_walk,
-                                      color: Color(0xffCCE1F4),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text('3.5 Km Away/50 Min',style: TextStyle(fontWeight: FontWeight.w600)),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Icon(Icons.star,color: Color(0xffCCE1F4),),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text('5.0',style: TextStyle(fontWeight: FontWeight.w600)),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Icon(Icons.bolt,color: Color(0xffCCE1F4),),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text('07',style: TextStyle(fontWeight: FontWeight.w600),),
-                                  ],
-                                ),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'ChargePoint',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.location_on,
+                                        color: Color(0xffCCE1F4),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        '451 Beach Crescent, \nBC V6Z 3H1',
+                                        style: TextStyle(fontWeight: FontWeight.w600,
+                                            overflow: TextOverflow.fade),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.directions_walk,
+                                        color: Color(0xffCCE1F4),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text('3.5 Km Away/50 Min',style: TextStyle(fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Icon(Icons.star,color: Color(0xffCCE1F4),),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text('5.0',style: TextStyle(fontWeight: FontWeight.w600)),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Icon(Icons.bolt,color: Color(0xffCCE1F4),),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text('07',style: TextStyle(fontWeight: FontWeight.w600),),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Container(
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),border: Border.all(width: 2,color: Color(0xffCCE1F4))),
+                            child: Center(
+                              child: Text('Book Slot',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Color(0xffCCE1F4)),),
                             ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Container(
-                          width: 350,
-                          height: 50,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),border: Border.all(width: 2,color: Color(0xffCCE1F4))),
-                          child: Center(
-                            child: Text('Book Slot',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Color(0xffCCE1F4)),),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
