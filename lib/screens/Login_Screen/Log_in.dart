@@ -51,7 +51,8 @@ class _LogINState extends State<LogIN> {
         loading = false;
       });
     }).onError((error, stackTrace) {
-      Utils().toastMessage(error.toString().substring(30));
+      var s1 = error.toString().split(']');
+      Utils().toastMessage(s1[1].toString());
       setState(() {
         passwordController.clear();
         loading = false;
@@ -59,9 +60,10 @@ class _LogINState extends State<LogIN> {
     });
   }
 
+  bool passwordObscureText = true;
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: ()async{
          SystemNavigator.pop();
@@ -71,13 +73,13 @@ class _LogINState extends State<LogIN> {
         backgroundColor: white,
         body: SingleChildScrollView(
           child: Container(
-            width: size.width.w,
-            height: size.height.h,
+            width: 400.w,
+            height: 750.h,
             child: Stack(
               children: [
                 BackgroundDesign(back_button: false,),
                 Positioned(
-              top: size.height*0.3.h,
+              top: 200.h,
               left: 0,
               right: 0,
               child: Padding(
@@ -112,6 +114,7 @@ class _LogINState extends State<LogIN> {
                                         border: InputBorder.none,
                                         fillColor: black,
                                       ),
+
                                       validator: (value){
                                         if(value!.isEmpty){
                                           return 'Enter email';
@@ -134,8 +137,27 @@ class _LogINState extends State<LogIN> {
                                     child: TextFormField(
                                       keyboardType: TextInputType.text,
                                       controller: passwordController,
-                                      obscureText: true,
+                                      obscureText: passwordObscureText,
                                       decoration: InputDecoration(
+                                        suffixIcon: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                passwordObscureText =
+                                                !passwordObscureText;
+                                              });
+                                            },
+                                            icon: passwordObscureText
+                                                ? Image(
+                                              image: AssetImage(
+                                                  'assets/icons/hide.png'),
+                                              width: 25.w,
+                                              height: 25.h,
+                                            )
+                                                : Image(
+                                                image: AssetImage(
+                                                    'assets/icons/view.png'),
+                                                width: 25.w,
+                                                height: 25.h)),
                                         hintText: 'Password',
                                         border: InputBorder.none,
                                         fillColor: black,
@@ -184,7 +206,7 @@ class _LogINState extends State<LogIN> {
               child: Container(
                 child: Column(
                   children: [
-                    SizedBox(height: size.height*0.07.h,),
+                    SizedBox(height: 10.h,),
                     InkWell(
                       onTap: () {
                         if (formkey.currentState!.validate()) {
@@ -193,7 +215,7 @@ class _LogINState extends State<LogIN> {
                       },
                       child: ClayContainer(
                         color: white,
-                        depth: 20,
+                        depth: 40,
                         borderRadius: 30.r,
                         curveType: CurveType.convex,
                         child: Padding(

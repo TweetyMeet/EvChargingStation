@@ -38,7 +38,7 @@ class _BottomContainerState extends State<BottomContainer> {
             child: ClayContainer(
               color: white,
               height: size.height * 0.3,
-              depth: 60,
+              depth: -40,
               spread: 20,
               customBorderRadius: BorderRadius.only(
                   topRight:Radius.elliptical(350, 250),
@@ -51,7 +51,7 @@ class _BottomContainerState extends State<BottomContainer> {
                 onTap: widget.onTap,
                 child: ClayContainer(
                         color: white,
-                        depth: 20,
+                        depth: 40,
                         borderRadius: 30,
                         curveType: CurveType.convex,
                         child: Padding(
