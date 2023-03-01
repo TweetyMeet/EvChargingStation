@@ -3,8 +3,10 @@ import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:ev_project/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
@@ -46,14 +48,17 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         loading = false;
       });
-    }).onError((error, stackTrace) {
-      Utils().toastMessage(error.toString());
+    })
+        .onError((error, stackTrace) {
+      Utils().toastMessage(error.toString().substring(30));
       setState(() {
         loading = false;
       });
     });
   }
 
+
+  var errorValu = "Enter email";
 
       @override
       Widget build(BuildContext context) {
@@ -64,73 +69,85 @@ class _SignUpState extends State<SignUp> {
           backgroundColor: white,
           body: SingleChildScrollView(
             child: Container(
-              width: size.width,
-              height: size.height,
+              width: size.width.w,
+              height: size.height.h,
               child: Stack(
                 children: [
                   BackgroundDesign(back_button: false,),
                   Positioned(
-                    top: size.height * 0.3,
+                    top: size.height * 0.3.h,
                     left: 0,
                     right: 0,
                     child: Padding(
-                      padding: EdgeInsets.all(appPadding),
+                      padding: EdgeInsets.all(appPadding).w,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Hello', style: TextStyle(
-                                fontSize: 35, fontWeight: FontWeight.bold),),
+                                fontSize: 35.sp, fontWeight: FontWeight.bold),),
                             Text('Let\'s get started', style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 color: black.withOpacity(0.6),
                                 fontWeight: FontWeight.w800),),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                  vertical: appPadding),
+                                  vertical: appPadding).r,
                               child: Form(
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                 key: formkey,
                                 child: Column(
                                   children: [
                                     Container(
                                       child: ClayContainer(
                                         color: white,
-                                        borderRadius: 30,
+                                        borderRadius: 30.r,
                                         depth: -30,
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: appPadding),
+                                              horizontal: appPadding).r,
                                           child: TextFormField(
-
+                                            keyboardType: TextInputType.emailAddress,
+                                            // onChanged: (value) {
+                                            //   setState(() {
+                                            //     if(value.contains("")){
+                                            //       errorValu = "Enter email";
+                                            //     }else{
+                                            //       errorValu = "";
+                                            //     }
+                                            //   });
+                                            // },
                                             controller: emailController,
                                             focusNode: emailfocusnode,
                                             onFieldSubmitted: (value){
-                                               Utils.fieldFocus(context,emailfocusnode , passwordfocusnode);
+                                                Utils.fieldFocus(context,emailfocusnode , passwordfocusnode);
                                             },
                                             decoration: InputDecoration(
+                                              // errorText: errorValu.isEmpty? errorValu : null,
                                               hintText: 'Email',
                                               border: InputBorder.none,
                                               fillColor: black,
                                             ),
                                             validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return 'Enter email';
-                                              }
-                                              return null;
+                                               if (value!.isEmpty) {
+                                                 return  'Enter email';
+                                               }else {
+                                                 return null;
+                                               }
                                             },
                                           ),
                                         ),
 
                                       ),
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 10.h,),
                                     Container(
                                       child: ClayContainer(
                                         color: white,
-                                        borderRadius: 30,
+                                        borderRadius: 30.r,
                                         depth: -30,
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: appPadding),
+                                              horizontal: appPadding).r,
                                           child: TextFormField(
                                             keyboardType: TextInputType.text,
                                             controller: passwordController,

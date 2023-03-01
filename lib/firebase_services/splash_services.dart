@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/Login_Screen/Log_in.dart';
-import '../screens/bottom_navigation_bar/bottom_nav_bar.dart';
+import '../Bottom_Nav_Bar/bottom_nav_bar.dart';
 
 class SplashServices {
 

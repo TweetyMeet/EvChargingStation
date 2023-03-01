@@ -45,12 +45,10 @@ static final CameraPosition _kLake = CameraPosition(
       // tilt: 59.440717697143555,
       zoom: 14.4746);
 
-  List<Marker> marker = [];
-  List<Marker> list = [
-    Marker(
-      markerId: MarkerId('1'),
-      position: LatLng(34.2483191527193,-118.3879713743439),
-    ),
+  List<Marker> marker = [Marker(
+    markerId: MarkerId('1'),
+    position: LatLng(34.2483191527193,-118.3879713743439),
+  ),
     Marker(
       markerId: MarkerId('2'),
       position: LatLng(34.052542,-118.448504),
@@ -62,7 +60,9 @@ static final CameraPosition _kLake = CameraPosition(
     Marker(
       markerId: MarkerId('4'),
       position: LatLng(33.759802,-118.096665),
-    ),
+    ),];
+  List<Marker> list = [
+
   ];
 
   // @override

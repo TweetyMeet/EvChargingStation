@@ -1,5 +1,10 @@
+import 'package:ev_project/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../components/SearchBar.dart';
+import '../../constants/Booked_Ev_Card.dart';
 
 class TagScreen extends StatefulWidget {
   const TagScreen({Key? key}) : super(key: key);
@@ -18,58 +23,63 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
         backgroundColor: Colors.white,
 
        body: Padding(
-         padding: const EdgeInsets.all(8.0),
+         padding: const EdgeInsets.all(8.0).w,
          child :Column(
              children: [
-
-             Row(
-               children :[
-               SizedBox(width: 16,),
-               Icon(Icons.arrow_back_ios_outlined),
-               SizedBox(width: 16,),
-               Text('My  Booking',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-             ],
-             ),
-               Padding(
-                 padding: const EdgeInsets.all(20.0),
-                 child: TextFormField(
-
-                   decoration: InputDecoration(
-                     prefixIcon: Icon(Icons.search),
-                     hintText: "Search",
-
-                     border: OutlineInputBorder(
-                       borderRadius: BorderRadius.circular(20)
-                     )
-                   ),
-                 ),
+         Padding(
+         padding: const EdgeInsets.all(0.0).w,
+         child: Container(
+           height: 40.h,
+           child: TextFormField(
+             style: TextStyle(color: textBlack),
+             cursorColor: black,
+             decoration: InputDecoration(
+               fillColor: white,
+               filled: true,
+               prefixIcon: Icon(Icons.search,
+                 color: iconBlack,
                ),
-               SizedBox(height: 4,),
+               hintText: 'Search',
+               hintStyle: TextStyle(color: Colors.grey,fontSize: 13.sp),
+               border: OutlineInputBorder(borderRadius: BorderRadius.circular(15).w,
+                 borderSide: BorderSide(width: 1,color: black),),
+               focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 1,color: black),borderRadius: BorderRadius.circular(15).w),
+               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15).w,borderSide: BorderSide(width: 1,color: black)),
+             ),
+           ),
+         ),
+       ),
+               SizedBox(height: 4.h,),
                Card(
-                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                 elevation: 5,
+                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12).w),
+                 elevation: 7,
                  child: Container(
-
+                   width: 400,
+                 height: 50,
                  decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(12),
+                   borderRadius: BorderRadius.circular(12).w,
                    color: Colors.black.withOpacity(0.1),
                  ),
 
-                 child: TabBar(
-                   controller: _tabController,
-                   isScrollable: true,
-                   labelPadding: EdgeInsets.symmetric(horizontal: 35),
-                   indicator: BoxDecoration(
-                     borderRadius: BorderRadius.circular(12),
-                     color: Colors.black
+                 child: Padding(
+                   padding: const EdgeInsets.all(5.0).w,
+                   child: TabBar(
+                     unselectedLabelColor: black,
+                     controller: _tabController,
+                     isScrollable: true,
+                     labelPadding: EdgeInsets.symmetric(horizontal: 28).w,
+                     indicator: BoxDecoration(
+                       borderRadius: BorderRadius.circular(12).w,
+                       color: green.withOpacity(0.5),
+                     ),
+
+                     tabs: [
+                       Tab(text: "Ongoing",),
+                       Tab(text: "Booked",),
+                       Tab(text: "History",),
+
+                     ],
                    ),
-
-                   tabs: [
-                     Tab(text: "Ongoing",),
-                     Tab(text: "Booked",),
-                     Tab(text: "History",),
-
-                   ],
                  ) ,),
                ),
                Expanded(
@@ -81,97 +91,9 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                    itemCount: 10,
                    itemBuilder: (context,index){
                      return Container(
-                       height: 250,
-                       width: 250,
-                       child: Card(
-                         elevation: 7,
-                         shape: RoundedRectangleBorder(
-                           borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                         ),
-                         margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                         child:  Stack(
-                           children: [
-                             Column(
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                 Padding(
-                                   padding: const EdgeInsets.all(15.0),
-                                   child: Container(
-                                     width: 250,
-                                     height: 120,
-                                     decoration: BoxDecoration(
-                                         color: Color(0xffCCE1F4),
-                                         borderRadius: BorderRadius.circular(10)),
-                                     child: Padding(
-                                       padding: const EdgeInsets.only(top: 10, left: 10),
-                                       child: Column(
-                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                         children: [
-                                           Text(
-                                             'OLA',
-                                             style: TextStyle(
-                                                 fontSize: 22,
-                                                 fontWeight: FontWeight.w600),
-                                           ),
-                                           Text(
-                                             'Electronic',
-                                             style: TextStyle(
-                                                 fontSize: 22,
-                                                 fontWeight: FontWeight.w600),
-                                           ),
-                                           Text(
-                                             'Scooter',
-                                             style: TextStyle(
-                                                 fontSize: 22,
-                                                 fontWeight: FontWeight.w600),
-                                           ),
-                                         ],
-                                       ),
-                                     ),
-                                   ),
-                                 ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left: 20),
-                                   child: Row(
-                                     children: [
-                                       Icon(
-                                         Icons.location_on,
-                                         color: Color(0xffCCE1F4),
-                                       ),
-                                       Text(
-                                         '4750 Arbutus #312, Vancouver',
-                                         style: TextStyle(fontSize: 15),
-                                       ),
-                                     ],
-                                   ),
-                                 ),
-                                 SizedBox(
-                                   height: 5,
-                                 ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left: 20),
-                                   child: Row(
-                                     children: [
-                                       Icon(
-                                         Icons.bolt,
-                                         color: Color(0xffCCE1F4),
-                                       ),
-                                       Text(
-                                         'Type 2',
-                                         style: TextStyle(fontSize: 18, color: Colors.grey),
-                                       ),
-                                     ],
-                                   ),
-                                 ),
-                               ],
-                             ),
-                             Positioned(
-                                 left: 130,
-                                 child: Image(image: AssetImage('assets/images/bike_image-removebg-preview.png'))),
-                           ],
-                         ),
-
-                       ),
+                       height: 200.h,
+                       width: 400.w,
+                       child: booked_ev_card(),
                      );
                    },
                  ),
@@ -180,99 +102,10 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                        itemCount: 10,
                        itemBuilder: (context,index){
                          return Container(
-                           height: 250,
-                           width: 250,
+                           height: 200.h,
+                           width: 400.w,
 
-                           child: Card(
-                             elevation: 7,
-                             shape: RoundedRectangleBorder(
-
-                               borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                             ),
-                             margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                             child:  Stack(
-                               children: [
-                                 Column(
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(15.0),
-                                       child: Container(
-                                         width: 250,
-                                         height: 120,
-                                         decoration: BoxDecoration(
-                                             color: Color(0xffCCE1F4),
-                                             borderRadius: BorderRadius.circular(10)),
-                                         child: Padding(
-                                           padding: const EdgeInsets.only(top: 10, left: 10),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: [
-                                               Text(
-                                                 'OLA',
-                                                 style: TextStyle(
-                                                     fontSize: 22,
-                                                     fontWeight: FontWeight.w600),
-                                               ),
-                                               Text(
-                                                 'Electronic',
-                                                 style: TextStyle(
-                                                     fontSize: 22,
-                                                     fontWeight: FontWeight.w600),
-                                               ),
-                                               Text(
-                                                 'Scooter',
-                                                 style: TextStyle(
-                                                     fontSize: 22,
-                                                     fontWeight: FontWeight.w600),
-                                               ),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(left: 20),
-                                       child: Row(
-                                         children: [
-                                           Icon(
-                                             Icons.location_on,
-                                             color: Color(0xffCCE1F4),
-                                           ),
-                                           Text(
-                                             '4750 Arbutus #312, Vancouver',
-                                             style: TextStyle(fontSize: 15),
-                                           ),
-                                         ],
-                                       ),
-                                     ),
-                                     SizedBox(
-                                       height: 5,
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(left: 20),
-                                       child: Row(
-                                         children: [
-                                           Icon(
-                                             Icons.bolt,
-                                             color: Color(0xffCCE1F4),
-                                           ),
-                                           Text(
-                                             'Type 2',
-                                             style: TextStyle(fontSize: 18, color: Colors.grey),
-                                           ),
-                                         ],
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                                 Positioned(
-                                     left: 130,
-                                     child: Image(image: AssetImage('assets/images/bike_image-removebg-preview.png'))),
-                               ],
-                             ),
-
-                           ),
+                           child: booked_ev_card(),
                          );
                        },
                      ),
@@ -281,98 +114,9 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                        itemCount: 10,
                        itemBuilder: (context,index){
                          return Container(
-                           height: 250,
-                           width: 250,
-                           child: Card(
-                             elevation: 7,
-                             shape: RoundedRectangleBorder(
-
-                               borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                             ),
-                             margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                             child:  Stack(
-                               children: [
-                                 Column(
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: [
-                                     Padding(
-                                       padding: const EdgeInsets.all(15.0),
-                                       child: Container(
-                                         width: 250,
-                                         height: 120,
-                                         decoration: BoxDecoration(
-                                             color: Color(0xffCCE1F4),
-                                             borderRadius: BorderRadius.circular(10)),
-                                         child: Padding(
-                                           padding: const EdgeInsets.only(top: 10, left: 10),
-                                           child: Column(
-                                             crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: [
-                                               Text(
-                                                 'OLA',
-                                                 style: TextStyle(
-                                                     fontSize: 22,
-                                                     fontWeight: FontWeight.w600),
-                                               ),
-                                               Text(
-                                                 'Electronic',
-                                                 style: TextStyle(
-                                                     fontSize: 22,
-                                                     fontWeight: FontWeight.w600),
-                                               ),
-                                               Text(
-                                                 'Scooter',
-                                                 style: TextStyle(
-                                                     fontSize: 22,
-                                                     fontWeight: FontWeight.w600),
-                                               ),
-                                             ],
-                                           ),
-                                         ),
-                                       ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(left: 20),
-                                       child: Row(
-                                         children: [
-                                           Icon(
-                                             Icons.location_on,
-                                             color: Color(0xffCCE1F4),
-                                           ),
-                                           Text(
-                                             '4750 Arbutus #312, Vancouver',
-                                             style: TextStyle(fontSize: 15),
-                                           ),
-                                         ],
-                                       ),
-                                     ),
-                                     SizedBox(
-                                       height: 5,
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(left: 20),
-                                       child: Row(
-                                         children: [
-                                           Icon(
-                                             Icons.bolt,
-                                             color: Color(0xffCCE1F4),
-                                           ),
-                                           Text(
-                                             'Type 2',
-                                             style: TextStyle(fontSize: 18, color: Colors.grey),
-                                           ),
-                                         ],
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                                 Positioned(
-                                     left: 130,
-                                     child: Image(image: AssetImage('assets/images/bike_image-removebg-preview.png'))),
-                               ],
-                             ),
-
-                           ),
+                           height: 200.h,
+                           width: 400.w,
+                           child: booked_ev_card(),
                          );
                        },
                      ),

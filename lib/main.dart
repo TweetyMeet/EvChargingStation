@@ -2,6 +2,7 @@ import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:ev_project/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,14 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ScreenUtilInit(builder: (context, child) => MaterialApp(
       title:'Neumorphic Login',
-        debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
       ),
       home: Splash(),
+    ),
     );
   }
 }
