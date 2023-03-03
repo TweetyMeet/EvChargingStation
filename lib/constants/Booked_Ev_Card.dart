@@ -4,13 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class booked_ev_card extends StatefulWidget {
-  const booked_ev_card({Key? key}) : super(key: key);
+  final number_for_car_images;
+  const booked_ev_card({Key? key, this.number_for_car_images}) : super(key: key);
 
   @override
   State<booked_ev_card> createState() => _booked_ev_cardState();
 }
 
 class _booked_ev_cardState extends State<booked_ev_card> {
+
+  List cars = [
+    'assets/images/large-removebg-preview.png',
+    'assets/images/large_8-removebg-preview.png',
+    'assets/images/large__3_-removebg-preview.png',
+    'assets/images/large__4_-removebg-preview.png',
+    'assets/images/large-removebg-preview.png',
+    'assets/images/large_8-removebg-preview.png',
+    'assets/images/large__3_-removebg-preview.png',
+    'assets/images/large__4_-removebg-preview.png',
+    'assets/images/large__3_-removebg-preview.png',
+    'assets/images/large__4_-removebg-preview.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return  Card(
@@ -144,7 +159,7 @@ class _booked_ev_cardState extends State<booked_ev_card> {
               Positioned(
                   left: 160.w,
                   bottom: 65.h,
-                  child: Image(image: AssetImage('assets/images/bike_image-removebg-preview.png'),width: 160.w,height: 150.h,)),
+                  child: Image(image: AssetImage(cars[widget.number_for_car_images]),width: 160.w,height: 150.h,)),
             ],
           ),
     );

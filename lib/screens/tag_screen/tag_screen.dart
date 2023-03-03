@@ -93,7 +93,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                      return Container(
                        height: 200.h,
                        width: 400.w,
-                       child: booked_ev_card(),
+                       child: booked_ev_card(number_for_car_images: index),
                      );
                    },
                  ),
@@ -105,7 +105,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                            height: 200.h,
                            width: 400.w,
 
-                           child: booked_ev_card(),
+                           child: booked_ev_card(number_for_car_images: index),
                          );
                        },
                      ),
@@ -116,7 +116,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                          return Container(
                            height: 200.h,
                            width: 400.w,
-                           child: booked_ev_card(),
+                           child: booked_ev_card(number_for_car_images: index),
                          );
                        },
                      ),

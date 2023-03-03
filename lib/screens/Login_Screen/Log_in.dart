@@ -15,8 +15,6 @@ import '../../Bottom_Nav_Bar/bottom_nav_bar.dart';
 import '../homescreen/homescreen.dart';
 
 
-
-
 class LogIN extends StatefulWidget {
   final bool  loading;
   const LogIN({Key? key, this.loading = false}) : super(key: key);
@@ -62,6 +60,13 @@ class _LogINState extends State<LogIN> {
 
   bool passwordObscureText = true;
 
+  bool isEmail(String email) {
+    String p =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = new RegExp(p);
+    return regExp.hasMatch(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -79,7 +84,7 @@ class _LogINState extends State<LogIN> {
               children: [
                 BackgroundDesign(back_button: false,),
                 Positioned(
-              top: 200.h,
+              top: 170.h,
               left: 0,
               right: 0,
               child: Padding(
@@ -116,10 +121,17 @@ class _LogINState extends State<LogIN> {
                                       ),
 
                                       validator: (value){
-                                        if(value!.isEmpty){
+                                        if (value!.isEmpty) {
                                           return 'Enter email';
+                                        } else if(value == value.trim()) {
+                                          if (isEmail(value)) {
+                                            return null;
+                                          } else {
+                                            return 'Enter valid email';
+                                          }
+                                        }else {
+                                          return 'Enter valid email';
                                         }
-                                        return null;
                                       },
                                     ),
                                   ) ,

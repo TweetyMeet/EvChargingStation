@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:clay_containers/widgets/clay_container.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:ev_project/utils/utils.dart';
@@ -7,7 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:email_auth/email_auth.dart';
 import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
 import '../email_Verifying_Screen/email_verifying_screen.dart';
@@ -25,9 +28,11 @@ class _SignUpState extends State<SignUp> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final ConfirmPasswordController = TextEditingController();
+  // final otpController = TextEditingController();
   final emailfocusnode = FocusNode();
   final passwordfocusnode = FocusNode();
   FirebaseAuth _auth = FirebaseAuth.instance;
+
 
   @override
   void dispose() {
@@ -35,17 +40,53 @@ class _SignUpState extends State<SignUp> {
     passwordController.dispose();
   }
 
-  void signup() {
+
+  bool passwordObscureText = true;
+  bool confiemPasswordObscureText = true;
+
+  // String p =
+  //     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  // RegExp regExp = new RegExp(p.toString());
+
+  bool isEmail(String email) {
+    String p =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = new RegExp(p);
+    return regExp.hasMatch(email);
+  }
+  // EmailAuth emailAuth =  new EmailAuth(sessionName: "Sample session");
+
+  // void sendOTP() async {
+  //   var res = await emailAuth.sendOtp(recipientMail: emailController.text,otpLength: 5);
+  //   if (res) {
+  //     print('OTP send');
+  //   }else{
+  //     print('We could not sent the OTP');
+  //   }
+  // }
+
+  // void verifyOTP() {
+  //   var res = emailAuth.validateOtp(
+  //   recipientMail: emailController.text,
+  //       userOtp: otpController.text);
+  //   if(res) {
+  //     print('otp valid');
+  //   }else{
+  //     print('Invalid OTP');
+  //   }
+  // }
+
+  void SingUp(){
     setState(() {
       loading = true;
     });
     _auth
         .createUserWithEmailAndPassword(
-            email: emailController.text.toString(),
-            password: passwordController.text.toString())
+        email: emailController.text.toString().trim(),
+        password: passwordController.text.toString().trim())
         .then((value) {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => email_verifying_screen(),
+        builder: (context) => LogIN(),
       ));
       setState(() {
         loading = false;
@@ -59,8 +100,13 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
-  bool passwordObscureText = true;
-  bool confiemPasswordObscureText = true;
+
+  // @override
+  // void initState() {
+  //   emailAuth = new EmailAuth(sessionName: "Sample session",);
+  //   super.initState();
+  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +115,14 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Container(
           width: 400.w,
-          height: 750.h,
+          height: 730.h,
           child: Stack(
             children: [
               BackgroundDesign(
                 back_button: false,
               ),
               Positioned(
-                top: 200.h,
+                top: 170.h,
                 left: 0,
                 right: 0,
                 child: Padding(
@@ -127,6 +173,7 @@ class _SignUpState extends State<SignUp> {
                                               passwordfocusnode);
                                         },
                                         decoration: InputDecoration(
+                                          // suffixIcon: TextButton(onPressed: () {sendOTP();},child: Text('Send OTP')),
                                           hintText: 'Email',
                                           border: InputBorder.none,
                                           fillColor: black,
@@ -134,8 +181,14 @@ class _SignUpState extends State<SignUp> {
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return 'Enter email';
-                                          } else {
-                                            return null;
+                                          } else if(value == value.trim()) {
+                                            if (isEmail(value)) {
+                                              return null;
+                                            } else {
+                                              return 'Enter valid email';
+                                            }
+                                          }else {
+                                            return 'Enter valid email';
                                           }
                                         },
                                       ),
@@ -203,8 +256,7 @@ class _SignUpState extends State<SignUp> {
                                     depth: -30,
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
-                                              horizontal: appPadding)
-                                          .r,
+                                              horizontal: appPadding).r,
                                       child: TextFormField(
                                         keyboardType: TextInputType.text,
                                         controller: ConfirmPasswordController,
@@ -243,6 +295,37 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                   ),
                                 ),
+                                // SizedBox(
+                                //   height: 10.h,
+                                // ),
+                                // Container(
+                                //   child: ClayContainer(
+                                //     color: white,
+                                //     borderRadius: 30.r,
+                                //     depth: -30,
+                                //     child: Padding(
+                                //       padding: const EdgeInsets.symmetric(
+                                //           horizontal: appPadding)
+                                //           .r,
+                                //       child: TextFormField(
+                                //         keyboardType: TextInputType.text,
+                                //         controller: otpController,
+                                //         obscureText: false,
+                                //         decoration: InputDecoration(
+                                //           hintText: 'OTP',
+                                //           border: InputBorder.none,
+                                //           fillColor: black,
+                                //         ),
+                                //         validator: (value) {
+                                //           if (value!.isEmpty) {
+                                //             return 'Enter Confirm Password';
+                                //           }
+                                //           return null;
+                                //         },
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -254,10 +337,10 @@ class _SignUpState extends State<SignUp> {
                 title: 'Sign Up',
                 loading: loading,
                 onTap: () {
+                  // verifyOTP();
                   if (formkey.currentState!.validate()) {
-                    if (passwordController.text.toString() ==
-                        ConfirmPasswordController.text.toString()) {
-                      signup();
+                    if (passwordController.text.toString() == ConfirmPasswordController.text.toString()) {
+                      SingUp();
                     } else {
                       Utils().toastMessage('check confirm password');
                     }

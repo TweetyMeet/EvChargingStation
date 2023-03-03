@@ -37,7 +37,11 @@ class _email_verifying_screenState extends State<email_verifying_screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('An email has been sent to ${user.email} please verify'),
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+            child: Text('An email has been sent to ${user.email} please verify')),
       ),
     );
   }
