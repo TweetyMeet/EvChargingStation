@@ -81,6 +81,7 @@ class _LogINState extends State<LogIN> {
             width: 400.w,
             height: 750.h,
             child: Stack(
+
               children: [
                 BackgroundDesign(back_button: false,),
                 Positioned(
