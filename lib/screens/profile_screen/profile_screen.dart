@@ -42,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   backgroundImage: AssetImage("assets/images/PHOTO.png")),
             ),
 
+
             SizedBox(
               height: 10.h,
             ),
