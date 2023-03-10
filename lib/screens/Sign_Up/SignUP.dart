@@ -147,8 +147,6 @@ class _SignUpState extends State<SignUp> {
                               const EdgeInsets.symmetric(vertical: appPadding)
                                   .r,
                           child: Form(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
                             key: formkey,
                             child: Column(
                               children: [
@@ -178,6 +176,7 @@ class _SignUpState extends State<SignUp> {
                                           border: InputBorder.none,
                                           fillColor: black,
                                         ),
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return 'Enter email';
@@ -188,7 +187,7 @@ class _SignUpState extends State<SignUp> {
                                               return 'Enter valid email';
                                             }
                                           }else {
-                                            return 'Enter valid email';
+                                            return "email don't accept spaces";
                                           }
                                         },
                                       ),
@@ -236,11 +235,16 @@ class _SignUpState extends State<SignUp> {
                                           border: InputBorder.none,
                                           fillColor: black,
                                         ),
+                                        autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return 'Enter password';
+                                          }else if(value == value.trim()) {
+                                            return null;
+                                          }else{
+                                            return "password don't accept spaces";
                                           }
-                                          return null;
                                         },
                                       ),
                                     ),
@@ -285,6 +289,8 @@ class _SignUpState extends State<SignUp> {
                                           border: InputBorder.none,
                                           fillColor: black,
                                         ),
+                                        autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return 'Enter Confirm Password';

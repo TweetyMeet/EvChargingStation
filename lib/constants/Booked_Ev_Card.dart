@@ -29,7 +29,7 @@ class _booked_ev_cardState extends State<booked_ev_card> {
   @override
   Widget build(BuildContext context) {
     return  Card(
-          elevation: 7,
+          // elevation: 7,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20).w,
           ),

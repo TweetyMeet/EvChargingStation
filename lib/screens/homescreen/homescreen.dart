@@ -7,8 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/SearchBar.dart';
 import '../../constants/Booked_Ev_Card.dart';
-import 'near_by_stations.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -33,21 +31,24 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screensize = MediaQuery.of(context).size;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Container(
-              width: 400.w,
-              height: 155.h,
+              width: screenWidth*1,
+              height: screenHeight* 0.215,
               decoration: BoxDecoration(
                   color: green.withOpacity(0.5),
                   borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30).w,
-                      bottomRight: Radius.circular(30).w)),
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30))),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0).w,
+                padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.06),
                 child: Column(
                   children: [
                     Row(
@@ -59,18 +60,18 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               "Choose EV Charger",
                               style: TextStyle(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
+                                  fontSize: screensize.aspectRatio*45, fontWeight: FontWeight.w500),
                             ),
                             Text(
                               'Near by you',
                               style: TextStyle(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w500),
+                                  fontSize: screensize.aspectRatio*45, fontWeight: FontWeight.w500),
                             ),
                           ],
                         ),
                         Container(
-                          width: 100.w,
-                          height: 100.h,
+                          width:screenWidth*0.29,
+                          height: screenHeight*0.13,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
@@ -88,51 +89,46 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // SearchBar(),
                     SizedBox(
-                      height: 10.h,
+                      height: screensize.height*0.006,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 15).r,
+                      padding:  EdgeInsets.only(left: screensize.aspectRatio*40, right: screensize.aspectRatio*40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'My Booking',
                             style: TextStyle(
-                                fontSize: 18.sp, fontWeight: FontWeight.w500),
+                                fontSize: screensize.aspectRatio*40, fontWeight: FontWeight.w500),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => demo(),));
+                            },
                             child: Text('See All',
                                 style: TextStyle(
                                     color: Colors.grey.shade600,
-                                    fontSize: 15.sp)),
+                                    fontSize: screensize.aspectRatio*33)),
                           )
                         ],
                       ),
                     ),
                     Container(
-                        width: 400.w,
-                        height: 200.h,
-                        // decoration: BoxDecoration(
-                        //     color: Colors.white,
-                        //     borderRadius: BorderRadius.circular(20),
-                        //     boxShadow: [BoxShadow(color: Colors.grey,spreadRadius: 0,blurRadius: 0)]
-                        // ),
+                        width: screensize.width*1,
+                        height: screensize.height*0.26,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: 4,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.only(left: 15).r,
+                              padding: EdgeInsets.only(left: screensize.aspectRatio*35),
                               child: Container(
-                                width: 250.w,
-                                height: 200.h,
+                                width: screensize.width*0.7,
                                 child: Card(
-                                  elevation: 7,
+                                  // elevation: 7,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20).w,
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Stack(
                                     children: [
@@ -141,29 +137,29 @@ class _HomePageState extends State<HomePage> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                    left: 10, top: 10).r,
+                                            padding: EdgeInsets.only(
+                                                    left: screensize.aspectRatio*30, top: screensize.aspectRatio*30),
                                             child: Container(
-                                              width: 180.w,
-                                              height: 90.h,
+                                              width: screensize.width*0.5,
+                                              height: screenHeight*0.11,
                                               decoration: BoxDecoration(
                                                   color: green.withOpacity(0.5),
                                                   borderRadius:
-                                                      BorderRadius.circular(10).w),
+                                                      BorderRadius.circular(10)),
                                               child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                        top: 10, left: 10).r,
+                                                padding: EdgeInsets.only(
+                                                        top: screensize.aspectRatio*20, left: screensize.aspectRatio*20),
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                      width: 100.w,
+                                                      width: screensize.width*0.2,
                                                       child: Text(
                                                         'OLA Electronic Scooter',
                                                         maxLines: 3,
                                                         style: TextStyle(
-                                                            fontSize: 16.sp,
+                                                            fontSize: screensize.aspectRatio*35,
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w500),
@@ -186,36 +182,36 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                             ),
                                           ),
-                                          SizedBox(height: 15.h),
+                                          SizedBox(height: screensize.height*0.014),
                                           Padding(
                                             padding:
-                                                const EdgeInsets.only(left: 10).r,
+                                                 EdgeInsets.only(left: screensize.aspectRatio*25),
                                             child: Row(
                                               children: [
                                                 Icon(
                                                   Icons.location_on,
-                                                  size: 15.sp,
+                                                  size: screensize.aspectRatio*33,
                                                   color: green.withOpacity(0.5),
                                                 ),
                                                 Container(
-                                                  width: 180.w,
+                                                  width: screensize.width*0.56,
                                                   child: Text(
                                                     '4750 Arbutus #312, Vancouver',
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     style: TextStyle(
-                                                        fontSize: 12.sp),
+                                                        fontSize: screensize.aspectRatio*27),
                                                   ),
                                                 ),
                                               ],
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 10.h,
+                                            height: screensize.height*0.014,
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                    left: 10, right: 20).r,
+                                            padding: EdgeInsets.only(
+                                                    left: screensize.aspectRatio*25, right: screensize.aspectRatio*35),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -225,14 +221,14 @@ class _HomePageState extends State<HomePage> {
                                                   children: [
                                                     Icon(
                                                       Icons.bolt,
-                                                      size: 15.sp,
+                                                      size: screensize.aspectRatio*33,
                                                       color: green.withOpacity(0.5),
                                                     ),
                                                     Text(
                                                       'Type 2',
                                                       style: TextStyle(
                                                           color: Colors.grey,
-                                                          fontSize: 12.sp),
+                                                          fontSize: screensize.aspectRatio*27),
                                                     ),
                                                   ],
                                                 ),
@@ -241,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                                                     Icon(
                                                       Icons
                                                           .battery_charging_full,
-                                                      size: 15.sp,
+                                                      size: screensize.aspectRatio*33,
                                                       color: green
                                                           .withOpacity(0.5),
                                                     ),
@@ -249,7 +245,7 @@ class _HomePageState extends State<HomePage> {
                                                       'Type 2',
                                                       style: TextStyle(
                                                           color: Colors.grey,
-                                                          fontSize: 12.sp),
+                                                          fontSize: screensize.aspectRatio*27),
                                                     ),
                                                   ],
                                                 ),
@@ -257,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                                                   children: [
                                                     Icon(
                                                       Icons.charging_station,
-                                                      size: 15.sp,
+                                                      size: screensize.aspectRatio*33,
                                                       color: green
                                                           .withOpacity(0.5),
                                                     ),
@@ -265,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                                                       'Type 2',
                                                       style: TextStyle(
                                                           color: Colors.grey,
-                                                          fontSize: 12.sp),
+                                                          fontSize: screensize.aspectRatio*27),
                                                     ),
                                                   ],
                                                 ),
@@ -273,26 +269,26 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 10.h,
+                                            height: screensize.height*0.014,
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsets.only(left: 20).r,
+                                                EdgeInsets.only(left: screensize.aspectRatio*30),
                                             child: Text(
                                               '50 Min Remaining',
-                                              style: TextStyle(fontSize: 12.sp),
+                                              style: TextStyle(fontSize: screensize.aspectRatio*27),
                                             ),
                                           ),
                                         ],
                                       ),
                                       Positioned(
-                                          left: 80.w,
-                                          bottom: 65.h,
+                                          left: screensize.aspectRatio*190,
+                                          bottom: screensize.aspectRatio*130,
                                           child: Image(
                                             image: AssetImage(
                                                 cars[index]),
-                                            width: 160.w,
-                                            height: 150.h,
+                                            width: screensize.width*0.45,
+                                            height: screensize.height*0.18,
                                           )),
                                     ],
                                   ),
@@ -302,47 +298,42 @@ class _HomePageState extends State<HomePage> {
                           },
                         )),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 15).r,
+                      padding: EdgeInsets.only(left: screensize.aspectRatio*40, right: screensize.aspectRatio*40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'Near by me',
                             style: TextStyle(
-                                fontSize: 18.sp, fontWeight: FontWeight.w500),
+                                fontSize: screensize.aspectRatio*40, fontWeight: FontWeight.w500),
                           ),
                           TextButton(
                             onPressed: () {
-                              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => demo(),));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => demo(),));
                             },
                             child: Text('See All',
                                 style: TextStyle(
                                     color: Colors.grey.shade600,
-                                    fontSize: 15.sp)),
+                                    fontSize: screensize.aspectRatio*33)),
                           )
                         ],
                       ),
                     ),
                     Container(
-                      width: 380.w,
-                      height: 180.h,
+                      width: screensize.width*1,
+                      height: screensize.height * 0.26,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.only(left: 15).r,
+                            padding:  EdgeInsets.only(left: screensize.aspectRatio*35),
                             child: Container(
-                              width: 280.w,
-                              height: 180.h,
-                              // height: 200.h,
-                              // decoration: BoxDecoration(
-                              //     color: Colors.white,
-                              //     borderRadius: BorderRadius.circular(20)),
+                              width: screensize.width*0.8,
                               child: Card(
-                                elevation: 7,
+                                // elevation: 7,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20).w,
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -354,23 +345,23 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                                  left: 15, top: 15).r,
+                                          padding: EdgeInsets.only(
+                                                  left: screensize.aspectRatio*30, top: screensize.aspectRatio*30),
                                           child: Container(
-                                            width: 80.w,
-                                            height: 80.h,
+                                            width: screensize.width*0.23,
+                                            height: screensize.height*0.1,
                                             decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                     image: AssetImage(
                                                         images[index]),
                                                     fit: BoxFit.cover),
                                                 borderRadius:
-                                                    BorderRadius.circular(15).w),
+                                                    BorderRadius.circular(15)),
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                                  top: 15, left: 15).r,
+                                          padding: EdgeInsets.only(
+                                                  top: screensize.aspectRatio*30, left: screensize.aspectRatio*30),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -378,12 +369,12 @@ class _HomePageState extends State<HomePage> {
                                               Text(
                                                 'ChargePoint',
                                                 style: TextStyle(
-                                                    fontSize: 14.sp,
+                                                    fontSize: screensize.aspectRatio*33,
                                                     fontWeight:
                                                         FontWeight.w700),
                                               ),
                                               SizedBox(
-                                                height: 7.h,
+                                                height: screensize.height*0.014,
                                               ),
                                               Row(
                                                 crossAxisAlignment:
@@ -391,20 +382,19 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Icon(
                                                     Icons.location_on,
-                                                    size: 15.sp,
+                                                    size: screensize.aspectRatio*33,
                                                     color:
                                                         green.withOpacity(0.5),
                                                   ),
                                                   SizedBox(
-                                                    width: 5.w,
+                                                    width: screensize.width*0.014,
                                                   ),
                                                   Container(
-                                                    width: 130.w,
-                                                    // height: 25.h,
+                                                    width: screensize.width*0.4,
                                                     child: Text(
                                                       '451 Beach Crescent,BC V6Z 3H1',
                                                       style: TextStyle(
-                                                          fontSize: 12.sp),
+                                                          fontSize: screensize.aspectRatio*27),
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       maxLines: 2,
@@ -413,7 +403,7 @@ class _HomePageState extends State<HomePage> {
                                                 ],
                                               ),
                                               SizedBox(
-                                                height: 7.h,
+                                                height: screensize.height*0.014,
                                               ),
                                               Row(
                                                 mainAxisAlignment:
@@ -421,22 +411,22 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Icon(
                                                     Icons.directions_walk,
-                                                    size: 15.sp,
+                                                    size: screensize.aspectRatio*33,
                                                     color:
                                                         green.withOpacity(0.5),
                                                   ),
                                                   SizedBox(
-                                                    width: 5.w,
+                                                    width:screensize.width*0.014,
                                                   ),
                                                   Text(
                                                     '3.5 Km Away/50 Min',
                                                     style: TextStyle(
-                                                        fontSize: 12.sp),
+                                                        fontSize: screensize.aspectRatio*27),
                                                   ),
                                                 ],
                                               ),
                                               SizedBox(
-                                                height: 7.h,
+                                                height: screensize.height*0.014,
                                               ),
                                               Row(
                                                 mainAxisAlignment:
@@ -445,34 +435,34 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   Icon(
                                                     Icons.star,
-                                                    size: 15.sp,
+                                                    size: screensize.aspectRatio*33,
                                                     color:
                                                         green.withOpacity(0.5),
                                                   ),
                                                   SizedBox(
-                                                    width: 5.w,
+                                                    width: screensize.width*0.014,
                                                   ),
                                                   Text(
                                                     '5.0',
                                                     style: TextStyle(
-                                                        fontSize: 12.sp),
+                                                        fontSize: screensize.aspectRatio*27),
                                                   ),
                                                   SizedBox(
-                                                    width: 20.w,
+                                                    width: screensize.width*0.07,
                                                   ),
                                                   Icon(
                                                     Icons.bolt,
-                                                    size: 15.sp,
+                                                    size: screensize.aspectRatio*33,
                                                     color:
                                                         green.withOpacity(0.5),
                                                   ),
                                                   SizedBox(
-                                                    width: 5.w,
+                                                    width: screensize.width*0.014,
                                                   ),
                                                   Text(
                                                     '07',
                                                     style: TextStyle(
-                                                        fontSize: 12.sp),
+                                                        fontSize: screensize.aspectRatio*27),
                                                   ),
                                                 ],
                                               ),
@@ -482,21 +472,21 @@ class _HomePageState extends State<HomePage> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(10).w,
+                                      padding: EdgeInsets.only(top: screensize.aspectRatio*20,left: screensize.aspectRatio*25,right: screensize.aspectRatio*25),
                                       child: Container(
-                                        width: 350.w,
-                                        height: 35.h,
+                                        width: screensize.width*1,
+                                        height: screensize.height*0.046,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(10).w,
+                                                BorderRadius.circular(10),
                                             border: Border.all(
-                                                width: 2,
+                                                width: screensize.width*0.006,
                                                 color: green.withOpacity(0.5))),
                                         child: Center(
                                           child: Text(
                                             'Book Slot',
                                             style: TextStyle(
-                                                fontSize: 14.sp,
+                                                fontSize:screensize.aspectRatio*32,
                                                 fontWeight: FontWeight.bold,
                                                 color: green.withOpacity(0.5)),
                                           ),

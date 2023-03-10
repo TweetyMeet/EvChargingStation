@@ -52,7 +52,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                SizedBox(height: 4.h,),
                Card(
                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12).w),
-                 elevation: 7,
+                 // elevation: 7,
                  child: Container(
                    width: 400,
                  height: 50,
@@ -86,7 +86,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                  child: TabBarView(
                    controller: _tabController,
                    children: [
-                 ListView.builder(
+                     ListView.builder(
                    physics: BouncingScrollPhysics(),
                    itemCount: 10,
                    itemBuilder: (context,index){

@@ -81,7 +81,6 @@ class _LogINState extends State<LogIN> {
             width: 400.w,
             height: 750.h,
             child: Stack(
-
               children: [
                 BackgroundDesign(back_button: false,),
                 Positioned(
@@ -102,7 +101,6 @@ class _LogINState extends State<LogIN> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: appPadding).r,
                         child: Form(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           key: formkey,
                           child: Column(
                             children: [
@@ -120,7 +118,7 @@ class _LogINState extends State<LogIN> {
                                         border: InputBorder.none,
                                         fillColor: black,
                                       ),
-
+                                      autovalidateMode: AutovalidateMode.onUserInteraction,
                                       validator: (value){
                                         if (value!.isEmpty) {
                                           return 'Enter email';
@@ -131,7 +129,7 @@ class _LogINState extends State<LogIN> {
                                             return 'Enter valid email';
                                           }
                                         }else {
-                                          return 'Enter valid email';
+                                          return "email don't accept spaces";
                                         }
                                       },
                                     ),
@@ -175,12 +173,15 @@ class _LogINState extends State<LogIN> {
                                         border: InputBorder.none,
                                         fillColor: black,
                                       ),
+                                      autovalidateMode: AutovalidateMode.onUserInteraction,
                                       validator: (value){
                                         if(value!.isEmpty){
                                           return 'Enter password';
+                                        }else if(value == value.trim()) {
+                                          return null;
+                                        }else{
+                                          return "password don't accept spaces";
                                         }
-                                        return null;
-
                                       },
                                     ),
                                   ) ,
