@@ -1,3 +1,4 @@
+import 'package:ev_project/components/settings/settingscreen.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:ev_project/utils/utils.dart';
@@ -107,13 +108,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8).r,
-              child: Card(
-                // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
-                child: ListTile(
-                  leading: Image(image: AssetImage('assets/icons/settings.png'),color: green,width: 23.w,height: 18.h,),
-                  title: Text('Setting',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+              child: InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Setting()));
+                },
+                child: Card(
+                  // elevation: 7,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                  child: ListTile(
+                    leading: Image(image: AssetImage('assets/icons/settings.png'),color: green,width: 23.w,height: 18.h,),
+                    title: Text('Setting',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
+                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+                  ),
                 ),
               ),
             ),

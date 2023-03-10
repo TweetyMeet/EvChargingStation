@@ -80,6 +80,7 @@ class _SignUpState extends State<SignUp> {
     setState(() {
       loading = true;
     });
+
     _auth
         .createUserWithEmailAndPassword(
         email: emailController.text.toString().trim(),
