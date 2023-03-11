@@ -1,3 +1,4 @@
+import 'package:ev_project/Bottom_Nav_Bar/bottom_nav_bar.dart';
 import 'package:ev_project/components/settings/description.dart';
 import 'package:ev_project/screens/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _SettingState extends State<Setting> {
               children: [
             InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottom_Nav_Bar()));
               },
                 child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,width: 30.w,height: 30.h,)),
                 SizedBox(width: 7,),
