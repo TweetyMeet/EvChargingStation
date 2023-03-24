@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ev_project/components/settings/settingscreen.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
@@ -18,6 +19,21 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   
   final auth = FirebaseAuth.instance;
+  String? profilePic;
+
+  Future apcall()async{
+    final dbRef = await FirebaseFirestore.instance.collection('users');
+    dbRef.doc(FirebaseAuth.instance.currentUser!.uid).get().
+    then((DocumentSnapshot<Map<String, dynamic>>snapshot) {
+      profilePic = snapshot['profilePic'].toString();
+    });
+  }
+
+  @override
+  void initState() {
+    apcall();
+    super.initState();
+  }
   
   @override
   Widget build(BuildContext context) {

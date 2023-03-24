@@ -18,7 +18,6 @@ import '../../constants/constants.dart';
 
 
 class editprofile extends StatefulWidget {
-
   const  editprofile({Key? key}) : super(key: key);
 
 
@@ -26,10 +25,7 @@ class editprofile extends StatefulWidget {
   State<editprofile> createState() =>  editprofileState();
 }
 
-String? profilePic;
-
 class  editprofileState extends State< editprofile> {
-  // String? profilePic;
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -59,26 +55,29 @@ class  editprofileState extends State< editprofile> {
   }
 
 
+  Future apcall()async{
+    final dbRef = await FirebaseFirestore.instance.collection('users');
+    dbRef.doc(FirebaseAuth.instance.currentUser!.uid).get().
+    then((DocumentSnapshot<Map<String, dynamic>>snapshot) {
+      name.text = snapshot['name'];
+      phone.text = snapshot['phone'];
+      email.text = snapshot['email'];
+      String profilePic = snapshot['profilePic'].toString();
+      lists(profilePic);
+    });
+  }
+
+  void lists(main){
+    setState(() {
+      currentImage = main;
+    });
+  }
+
+  String currentImage = "";
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) { 
-      if(FirebaseAuth.instance.currentUser!.displayName==null){
-        ScaffoldMessenger.of(context).
-        showSnackBar(SnackBar(content: Text('please complete your profile')));
-      }else{
-        FirebaseFirestore.instance.collection('users').
-        doc(FirebaseAuth.instance.currentUser!.uid).get().
-        then((DocumentSnapshot<Map<String, dynamic>>snapshot) {
-          name.text = snapshot['name'];
-          phone.text = snapshot['phone'];
-          email.text = snapshot['email'];
-          profilePic = snapshot['profilePic'];
-
-        });
-      }
-    });
-
+    apcall();
     super.initState();
   }
 
@@ -123,20 +122,20 @@ class  editprofileState extends State< editprofile> {
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
                         onTap: () async {
-                          final XFile? pickImage = await ImagePicker().pickImage(
+                          final pickImage = await ImagePicker().pickImage(
                             source: ImageSource.gallery,
                             imageQuality: 50,
                           );
                           if (pickImage != null) {
                             setState(() {
-                              profilePic = pickImage.path;
+                              currentImage = pickImage.path;
                             });
                           }else{
                             print('error');
                           }
                         },
                         child: Container(
-                          child: profilePic == null ? CircleAvatar(
+                          child: currentImage == null ? CircleAvatar(
                           radius: 70,
                            backgroundColor: Colors.greenAccent,
                           child: Image.asset("assets/images/add-photo.png",
@@ -144,14 +143,14 @@ class  editprofileState extends State< editprofile> {
                              width: 80,
                             ),
                           ) :
-                          profilePic!.contains('http') ?
+                          currentImage.toString().contains('http') ?
                           CircleAvatar(
                               radius: 70,
-                              backgroundImage: NetworkImage(profilePic!)
+                              backgroundImage: NetworkImage(currentImage.toString())
                           )
                               : CircleAvatar(
                             radius: 70,
-                            backgroundImage: FileImage(File(profilePic!)),
+                            backgroundImage: FileImage(File(currentImage.toString())),
                           ),
 
                         ),
@@ -218,7 +217,7 @@ class  editprofileState extends State< editprofile> {
                           SystemChannels.textInput.invokeListMethod(
                               'TextInput.hide'
                           );
-                          profilePic == null ?
+                          currentImage == null ?
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('select profile pic'))) :
 
@@ -262,7 +261,7 @@ class  editprofileState extends State< editprofile> {
     setState(() {
       isSaving = true;
     });
-    uploadImage(File(profilePic!), 'Profile').whenComplete(() {
+    uploadImage(File(currentImage!), 'Profile').whenComplete(() {
       Map<String, dynamic> data = {
         'name': name.text,
         'phone': phone.text,
@@ -276,6 +275,7 @@ class  editprofileState extends State< editprofile> {
           isSaving = false;
         });
       });
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyProfile(),));
     });
   }
 }
