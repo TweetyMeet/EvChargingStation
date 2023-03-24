@@ -43,8 +43,7 @@ class _LogINState extends State<LogIN> {
     _auth.signInWithEmailAndPassword(
         email: emailController.text.toString(),
         password: passwordController.text.toString()).then((value) {
-
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Bottom_Nav_Bar(),));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Bottom_Nav_Bar()));
       setState(() {
         loading = false;
       });

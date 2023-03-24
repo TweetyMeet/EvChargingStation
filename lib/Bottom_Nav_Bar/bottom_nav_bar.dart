@@ -19,10 +19,12 @@ class Bottom_Nav_Bar extends StatefulWidget {
 
 int pageRout = 0;
 int _currentIndex = 0;
+late int selected_current_index;
 
 List<Widget> screens = [HomePage(),SearchScreen(),TagScreen(),ProfileScreen()];
 
 class _Bottom_Nav_BarState extends State<Bottom_Nav_Bar> {
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -33,7 +35,7 @@ class _Bottom_Nav_BarState extends State<Bottom_Nav_Bar> {
           child: Padding(
             padding: const EdgeInsets.all(8.0).w,
             child: GNav(
-              selectedIndex: 0,
+              selectedIndex: pageRout,
               backgroundColor: white,
               tabBackgroundColor: skyBlue.withOpacity(0.7),
               color: black,
@@ -54,7 +56,7 @@ class _Bottom_Nav_BarState extends State<Bottom_Nav_Bar> {
             ),
           ),
         ),
-        body: screens[pageRout],
+        body: screens[pageRout]
       ),
     );
   }

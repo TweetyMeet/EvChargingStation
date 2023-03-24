@@ -40,7 +40,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
         email: emailController.text.toString()).then((value) {
 
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => LogIN(),));
-      Utils().toastMessage('please check your email to recover yuor email');
+      Utils().toastMessage('please check your email to recover your ID');
 
       setState(() {
         loading = false;
@@ -52,6 +52,13 @@ class _ForgotpasswordState extends State<Forgotpassword> {
         loading = false;
       });
     });
+  }
+
+  bool isEmail(String email) {
+    String p =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = new RegExp(p);
+    return regExp.hasMatch(email);
   }
 
   @override
@@ -102,18 +109,26 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: appPadding),
                                         child: TextFormField(
-
-                                          controller:emailController ,
+                                          keyboardType: TextInputType.emailAddress,
+                                          controller:emailController,
                                           decoration: InputDecoration(
                                             hintText: 'Email',
                                             border: InputBorder.none,
                                             fillColor: black,
                                           ),
+                                          autovalidateMode: AutovalidateMode.onUserInteraction,
                                           validator: (value){
-                                            if(value!.isEmpty){
+                                            if (value!.isEmpty) {
                                               return 'Enter email';
+                                            } else if(value == value.trim()) {
+                                              if (isEmail(value)) {
+                                                return null;
+                                              } else {
+                                                return 'Enter valid email';
+                                              }
+                                            }else {
+                                              return "email don't accept spaces";
                                             }
-                                            return null;
                                           },
                                         ),
                                       ) ,
@@ -141,7 +156,6 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                         InkWell(
                           onTap: () {
                             if (formkey.currentState!.validate()) {
-
                             }
                           },
                           child: ClayContainer(

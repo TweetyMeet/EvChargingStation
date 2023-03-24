@@ -1,6 +1,7 @@
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
-import 'package:ev_project/screens/homescreen/demo_page.dart';
+import 'package:ev_project/screens/homescreen/charging_station_detail.dart';
+import 'package:ev_project/screens/homescreen/near_by_station.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   List images = [
     'assets/images/download (2).jpg',
     'assets/images/1200x-1.jpg',
@@ -309,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => demo(),));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => near_by_station(),));
                             },
                             child: Text('See All',
                                 style: TextStyle(
@@ -328,172 +330,178 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding:  EdgeInsets.only(left: screensize.aspectRatio*35),
-                            child: Container(
-                              width: screensize.width*0.8,
-                              child: Card(
-                                // elevation: 7,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                                  left: screensize.aspectRatio*30, top: screensize.aspectRatio*30),
-                                          child: Container(
-                                            width: screensize.width*0.23,
-                                            height: screensize.height*0.1,
-                                            decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                                        images[index]),
-                                                    fit: BoxFit.cover),
-                                                borderRadius:
-                                                    BorderRadius.circular(15)),
+                            child: InkWell(
+                              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => charging_station_detail(),)),
+                              child: Container(
+                                width: screensize.width*0.8,
+                                child: Card(
+                                  // elevation: 7,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                    left: screensize.aspectRatio*30, top: screensize.aspectRatio*30),
+                                            child: Container(
+                                              width: screensize.width*0.23,
+                                              height: screensize.height*0.1,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          images[index]),
+                                                      fit: BoxFit.cover),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15)),
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                                  top: screensize.aspectRatio*30, left: screensize.aspectRatio*30),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'ChargePoint',
-                                                style: TextStyle(
-                                                    fontSize: screensize.aspectRatio*33,
-                                                    fontWeight:
-                                                        FontWeight.w700),
-                                              ),
-                                              SizedBox(
-                                                height: screensize.height*0.014,
-                                              ),
-                                              Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Icon(
-                                                    Icons.location_on,
-                                                    size: screensize.aspectRatio*33,
-                                                    color:
-                                                        green.withOpacity(0.5),
-                                                  ),
-                                                  SizedBox(
-                                                    width: screensize.width*0.014,
-                                                  ),
-                                                  Container(
-                                                    width: screensize.width*0.4,
-                                                    child: Text(
-                                                      '451 Beach Crescent,BC V6Z 3H1',
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                    top: screensize.aspectRatio*30, left: screensize.aspectRatio*30),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'ChargePoint',
+                                                  style: TextStyle(
+                                                      fontSize: screensize.aspectRatio*33,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                ),
+                                                SizedBox(
+                                                  height: screensize.height*0.014,
+                                                ),
+                                                Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.location_on,
+                                                      size: screensize.aspectRatio*33,
+                                                      color:
+                                                          green.withOpacity(0.5),
+                                                    ),
+                                                    SizedBox(
+                                                      width: screensize.width*0.014,
+                                                    ),
+                                                    Container(
+                                                      width: screensize.width*0.4,
+                                                      child: Text(
+                                                        '451 Beach Crescent,BC V6Z 3H1',
+                                                        style: TextStyle(
+                                                            fontSize: screensize.aspectRatio*27),
+                                                        overflow:
+                                                            TextOverflow.ellipsis,
+                                                        maxLines: 2,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: screensize.height*0.014,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.directions_walk,
+                                                      size: screensize.aspectRatio*33,
+                                                      color:
+                                                          green.withOpacity(0.5),
+                                                    ),
+                                                    SizedBox(
+                                                      width:screensize.width*0.014,
+                                                    ),
+                                                    Text(
+                                                      '3.5 Km Away/50 Min',
                                                       style: TextStyle(
                                                           fontSize: screensize.aspectRatio*27),
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 2,
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: screensize.height*0.014,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.star,
+                                                      size: screensize.aspectRatio*33,
+                                                      color:
+                                                          green.withOpacity(0.5),
+                                                    ),
+                                                    SizedBox(
+                                                      width: screensize.width*0.014,
+                                                    ),
+                                                    Text(
+                                                      '5.0',
+                                                      style: TextStyle(
+                                                          fontSize: screensize.aspectRatio*27),
+                                                    ),
+                                                    SizedBox(
+                                                      width: screensize.width*0.07,
+                                                    ),
+                                                    Icon(
+                                                      Icons.bolt,
+                                                      size: screensize.aspectRatio*33,
+                                                      color:
+                                                          green.withOpacity(0.5),
+                                                    ),
+                                                    SizedBox(
+                                                      width: screensize.width*0.014,
+                                                    ),
+                                                    Text(
+                                                      '07',
+                                                      style: TextStyle(
+                                                          fontSize: screensize.aspectRatio*27),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      InkWell(
+                                        onTap: () => print("hello"),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: screensize.aspectRatio*20,left: screensize.aspectRatio*25,right: screensize.aspectRatio*25),
+                                          child: Container(
+                                            width: screensize.width*1,
+                                            height: screensize.height*0.046,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                border: Border.all(
+                                                    width: screensize.width*0.006,
+                                                    color: green.withOpacity(0.5))),
+                                            child: Center(
+                                              child: Text(
+                                                'Book Slot',
+                                                style: TextStyle(
+                                                    fontSize:screensize.aspectRatio*32,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: green.withOpacity(0.5)),
                                               ),
-                                              SizedBox(
-                                                height: screensize.height*0.014,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Icon(
-                                                    Icons.directions_walk,
-                                                    size: screensize.aspectRatio*33,
-                                                    color:
-                                                        green.withOpacity(0.5),
-                                                  ),
-                                                  SizedBox(
-                                                    width:screensize.width*0.014,
-                                                  ),
-                                                  Text(
-                                                    '3.5 Km Away/50 Min',
-                                                    style: TextStyle(
-                                                        fontSize: screensize.aspectRatio*27),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: screensize.height*0.014,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Icon(
-                                                    Icons.star,
-                                                    size: screensize.aspectRatio*33,
-                                                    color:
-                                                        green.withOpacity(0.5),
-                                                  ),
-                                                  SizedBox(
-                                                    width: screensize.width*0.014,
-                                                  ),
-                                                  Text(
-                                                    '5.0',
-                                                    style: TextStyle(
-                                                        fontSize: screensize.aspectRatio*27),
-                                                  ),
-                                                  SizedBox(
-                                                    width: screensize.width*0.07,
-                                                  ),
-                                                  Icon(
-                                                    Icons.bolt,
-                                                    size: screensize.aspectRatio*33,
-                                                    color:
-                                                        green.withOpacity(0.5),
-                                                  ),
-                                                  SizedBox(
-                                                    width: screensize.width*0.014,
-                                                  ),
-                                                  Text(
-                                                    '07',
-                                                    style: TextStyle(
-                                                        fontSize: screensize.aspectRatio*27),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: screensize.aspectRatio*20,left: screensize.aspectRatio*25,right: screensize.aspectRatio*25),
-                                      child: Container(
-                                        width: screensize.width*1,
-                                        height: screensize.height*0.046,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                                width: screensize.width*0.006,
-                                                color: green.withOpacity(0.5))),
-                                        child: Center(
-                                          child: Text(
-                                            'Book Slot',
-                                            style: TextStyle(
-                                                fontSize:screensize.aspectRatio*32,
-                                                fontWeight: FontWeight.bold,
-                                                color: green.withOpacity(0.5)),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

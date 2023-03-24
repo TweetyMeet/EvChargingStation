@@ -26,7 +26,7 @@ class _SettingState extends State<Setting> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20,top: 10).r,
+            padding: const EdgeInsets.only(left: 9,top: 10).r,
             child: Row(
               children: [
             InkWell(

@@ -44,10 +44,6 @@ class _SignUpState extends State<SignUp> {
   bool passwordObscureText = true;
   bool confiemPasswordObscureText = true;
 
-  // String p =
-  //     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  // RegExp regExp = new RegExp(p.toString());
-
   bool isEmail(String email) {
     String p =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -55,7 +51,7 @@ class _SignUpState extends State<SignUp> {
     return regExp.hasMatch(email);
   }
   // EmailAuth emailAuth =  new EmailAuth(sessionName: "Sample session");
-
+  //
   // void sendOTP() async {
   //   var res = await emailAuth.sendOtp(recipientMail: emailController.text,otpLength: 5);
   //   if (res) {
@@ -64,7 +60,7 @@ class _SignUpState extends State<SignUp> {
   //     print('We could not sent the OTP');
   //   }
   // }
-
+  //
   // void verifyOTP() {
   //   var res = emailAuth.validateOtp(
   //   recipientMail: emailController.text,
@@ -161,8 +157,7 @@ class _SignUpState extends State<SignUp> {
                                               horizontal: appPadding)
                                           .r,
                                       child: TextFormField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        keyboardType: TextInputType.emailAddress,
                                         controller: emailController,
                                         focusNode: emailfocusnode,
                                         onFieldSubmitted: (value) {
@@ -172,7 +167,6 @@ class _SignUpState extends State<SignUp> {
                                               passwordfocusnode);
                                         },
                                         decoration: InputDecoration(
-                                          // suffixIcon: TextButton(onPressed: () {sendOTP();},child: Text('Send OTP')),
                                           hintText: 'Email',
                                           border: InputBorder.none,
                                           fillColor: black,
@@ -302,37 +296,6 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                   ),
                                 ),
-                                // SizedBox(
-                                //   height: 10.h,
-                                // ),
-                                // Container(
-                                //   child: ClayContainer(
-                                //     color: white,
-                                //     borderRadius: 30.r,
-                                //     depth: -30,
-                                //     child: Padding(
-                                //       padding: const EdgeInsets.symmetric(
-                                //           horizontal: appPadding)
-                                //           .r,
-                                //       child: TextFormField(
-                                //         keyboardType: TextInputType.text,
-                                //         controller: otpController,
-                                //         obscureText: false,
-                                //         decoration: InputDecoration(
-                                //           hintText: 'OTP',
-                                //           border: InputBorder.none,
-                                //           fillColor: black,
-                                //         ),
-                                //         validator: (value) {
-                                //           if (value!.isEmpty) {
-                                //             return 'Enter Confirm Password';
-                                //           }
-                                //           return null;
-                                //         },
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),
