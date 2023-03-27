@@ -25,33 +25,16 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
-// late Map map_Response2;
-// late List list_Response2;
+
 
 class _SearchScreenState extends State<SearchScreen> {
 
-  // final dbRef = FirebaseDatabase.instance.ref().onValue.listen(() {
-  //
-  // });
+
 
   TextEditingController _cont = TextEditingController();
 
 
-  // List<LatLng> _polylineCoordinates = [LatLng(34.2483191527193, -118.3879713743439)];
 
-  // void _updatePolyline(LatLng point) {
-  //   setState(() {
-  //     _polylineCoordinates.add(point);
-  //   });
-  // }
-
-  // Set<Polyline> _polylines = {
-  //   Polyline(polylineId: PolylineId('rout'),
-  //     color: Colors.blue,
-  //     width: 5,
-  //     points: _polylineCoordinates,
-  //   )
-  // };
   Completer<GoogleMapController> Controller = Completer();
 
   static final CameraPosition _kLake = CameraPosition(

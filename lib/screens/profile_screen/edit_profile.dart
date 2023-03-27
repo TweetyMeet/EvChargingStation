@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ev_project/Bottom_Nav_Bar/bottom_nav_bar.dart';
 import 'package:ev_project/screens/profile_screen/my_profile.dart';
 import 'package:ev_project/screens/profile_screen/profile_screen.dart';
+import 'package:ev_project/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart'  as firebase_storage;
 import 'package:firebase_storage/firebase_storage.dart';
@@ -73,7 +74,7 @@ class  editprofileState extends State< editprofile> {
     });
   }
 
-  String currentImage = "";
+  String? currentImage;
 
   @override
   void initState() {
@@ -83,6 +84,8 @@ class  editprofileState extends State< editprofile> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -93,7 +96,7 @@ class  editprofileState extends State< editprofile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 25, top: 10).r,
+                    padding:  EdgeInsets.only(left: screenWidth*0.03),
                     child: Row(
                       children: [
                         InkWell(
@@ -104,22 +107,23 @@ class  editprofileState extends State< editprofile> {
                             child: Image(image: AssetImage(
                                 'assets/icons/back-arrow.png'),
                               color: black,
-                              width: 30.w,
-                              height: 30.h,)),
+                              width:  screenWidth*0.08,
+                              height: screenHeight*0.08,
+                              )),
                         Text(
                           'Profile',
-                          style: TextStyle(fontSize: 25.sp,
+                          style: TextStyle(fontSize: screenWidth*0.065,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 15.h,
+                    height:screenHeight*0.020,
                   ),
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:  EdgeInsets.all(screenWidth*0.035),
                       child: GestureDetector(
                         onTap: () async {
                           final pickImage = await ImagePicker().pickImage(
@@ -129,6 +133,7 @@ class  editprofileState extends State< editprofile> {
                           if (pickImage != null) {
                             setState(() {
                               currentImage = pickImage.path;
+
                             });
                           }else{
                             print('error');
@@ -137,7 +142,7 @@ class  editprofileState extends State< editprofile> {
                         child: Container(
                           child: currentImage == null ? CircleAvatar(
                           radius: 70,
-                           backgroundColor: Colors.greenAccent,
+                           backgroundColor: green.withOpacity(0.5),
                           child: Image.asset("assets/images/add-photo.png",
                             height: 80,
                              width: 80,
@@ -157,9 +162,9 @@ class  editprofileState extends State< editprofile> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: screenHeight*0.038),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.all(screenWidth*0.03),
                     child: TextFormField(
                       controller: name,
                       validator: (v) {
@@ -173,9 +178,9 @@ class  editprofileState extends State< editprofile> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: screenHeight*0.01,),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(screenWidth*0.03),
                     child: TextFormField(
                       controller: phone,
                       validator: (v) {
@@ -189,9 +194,9 @@ class  editprofileState extends State< editprofile> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: screenHeight*0.01,),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.all(screenWidth*0.03),
                     child: TextFormField(
                       controller: email,
                       validator: (v) {
@@ -206,27 +211,27 @@ class  editprofileState extends State< editprofile> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 170,),
+                  SizedBox(height: screenHeight*0.165),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(screenWidth*0.03),
                     child: InkWell(
 
                       onTap: () {
+                        uploadImage(File(currentImage!), 'Profile');
                           isLoading = isSaving;
                         if (formKey.currentState!.validate()) {
                           SystemChannels.textInput.invokeListMethod(
                               'TextInput.hide'
                           );
-                          currentImage == null ?
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('select profile pic'))) :
 
-                          saveinfo();
+
+                            saveinfo();
+
                         }
                       },
                       child: Container(
-                        height: 50.h,
-                        width: 340.w,
+                        height: screenHeight*0.074,
+                        width: screenWidth*0.94,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius
                               .circular(10)
@@ -236,7 +241,7 @@ class  editprofileState extends State< editprofile> {
                         child: Center(
                           child: Text(
                             'Save Profile',
-                            style: TextStyle(fontSize: 14.sp,
+                            style: TextStyle(fontSize:  screenWidth*0.05,
                                 color: textBlack,
                                 fontWeight: FontWeight.w500),
                           ),

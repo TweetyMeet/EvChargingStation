@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ev_project/components/settings/settingscreen.dart';
 import 'package:ev_project/constants/constants.dart';
@@ -5,6 +7,7 @@ import 'package:ev_project/screens/Login_Screen/Log_in.dart';
 import 'package:ev_project/screens/profile_screen/my_profile.dart';
 import 'package:ev_project/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,17 +20,29 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  TextEditingController name = TextEditingController();
   
   final auth = FirebaseAuth.instance;
   String? profilePic;
+  
 
   Future apcall()async{
     final dbRef = await FirebaseFirestore.instance.collection('users');
     dbRef.doc(FirebaseAuth.instance.currentUser!.uid).get().
     then((DocumentSnapshot<Map<String, dynamic>>snapshot) {
-      profilePic = snapshot['profilePic'].toString();
+      name.text = snapshot['name'];
+      String profilePic = snapshot['profilePic'].toString();
+      lists(profilePic);
     });
   }
+
+  void lists(main){
+    setState(() {
+      currentImage = main;
+    });
+  }
+
+  String? currentImage;
 
   @override
   void initState() {
@@ -37,117 +52,136 @@ class _ProfileScreenState extends State<ProfileScreen> {
   
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white70,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             Padding(
-              padding: const EdgeInsets.only(left: 25,top: 10).r,
+              padding: EdgeInsets.only(left: screenWidth*0.045),
               child: Text(
                 'Profile',
-                style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: screenWidth*0.065, fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: 15.h,
+              height: screenHeight*0.019,
             ),
             Center(
-              child: CircleAvatar(
-                  radius: 50.r,
-                  backgroundImage: AssetImage("assets/images/PHOTO.png")),
-            ),
+              child: Container(
+                child: currentImage == null ? CircleAvatar(
+                  radius: 60,
+                  backgroundColor: green.withOpacity(0.5),
+                  child: Image.asset("assets/images/add-photo.png",
+                    height: 50,
+                    width: 50,
+                  ),
+                ) :
+                currentImage.toString().contains('http') ?
+                CircleAvatar(
+                    radius: 60,
+                    backgroundImage: NetworkImage(currentImage.toString())
+                )
+                    : null
+                ),
 
+              ),
+            SizedBox(
+              height: screenHeight*0.019,
+            ),
+            Center(
+                child: Text(name.text.toString(),
+              style: TextStyle(fontSize: screenHeight*0.023, fontWeight: FontWeight.bold),
+            )),
 
             SizedBox(
-              height: 10.h,
-            ),
-            Center(
-                child: Text(
-              'Meet Pansuriya',
-              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-            )),
-            Center(
-                child: Text(
-              'India',
-              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-            )),
-            SizedBox(
-              height: 20.h,
+              height: screenHeight*0.02,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8).r,
+              padding: EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: InkWell(
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile()));
                 },
                 child: Card(
                   // elevation: 7,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: ListTile(
-                    leading: Image(image: AssetImage('assets/icons/account.png'),color: green,width: 25.w,height: 20.h,),
-                    title: Text('My Profile',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+                    leading: Image(image: AssetImage('assets/icons/account.png'),color: green,
+                      width:  screenWidth*0.07,height: screenHeight*0.07,),
+                    title: Text('My Profile',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
+                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8).r,
+              padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: Card(
                 // elevation: 7,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                 child: ListTile(
-                  leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,width: 20.w,height: 15.h,),
-                  title: Text('Saved Slots',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+                  leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,
+                    width: screenWidth*0.06,height: screenHeight*0.06,),
+                  title: Text('Saved Slots',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
+                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8).r,
+              padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: Card(
                 // elevation: 7,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                 child: ListTile(
-                  leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,width: 20.w,height: 15.h,),
-                  title: Text('My Booking',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+                  leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,
+                    width: screenWidth*0.06,height: screenHeight*0.06,),
+                  title: Text('My Booking',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
+                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8).r,
+              padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: Card(
                 // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
-                  leading: Image(image: AssetImage('assets/icons/car.png'),color: green,width: 25.w,height: 20.h,),
-                  title: Text('My Car',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+
+                  leading: Image(image: AssetImage('assets/icons/car.png'),color: green,
+                    width: screenWidth*0.06,height: screenHeight*0.06,),
+                  title: Text('My Car',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
+                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8).r,
+              padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: InkWell(
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Setting()));
                 },
                 child: Card(
                   // elevation: 7,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: ListTile(
-                    leading: Image(image: AssetImage('assets/icons/settings.png'),color: green,width: 23.w,height: 18.h,),
-                    title: Text('Setting',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+
+                    leading: Image(image: AssetImage('assets/icons/settings.png'),color: green,
+                      width: screenWidth*0.06,height: screenHeight*0.06,),
+                    title: Text('Setting',style: TextStyle(fontSize: screenWidth*0.041,fontWeight: FontWeight.w500),),
+                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                   ),
                 ),
               ),
             ),
             SizedBox(
-              height: 35.h,
+              height: screenHeight*0.078,
             ),
             Center(
               child: InkWell(
@@ -157,16 +191,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   }).onError((error, stackTrace) { Utils().toastMessage(error.toString());});
                 },
                 child: Container(
-                    height: 50.h,
-                    width: 330.w,
+                    height: screenHeight*0.078,
+                    width: screenWidth*0.94,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10).w,
+                      borderRadius: BorderRadius.circular(10),
                       color: green.withOpacity(0.5),
                     ),
                     child: Center(
                         child: Text(
                           'Log Out',
-                          style: TextStyle(fontSize: 14.sp, color: textBlack,fontWeight: FontWeight.w500),
+                          style: TextStyle(fontSize: screenWidth*0.05, color: textBlack,fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),

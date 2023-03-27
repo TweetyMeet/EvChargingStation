@@ -1,6 +1,6 @@
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
-import 'package:ev_project/screens/homescreen/charging_station_detail.dart';
+
 import 'package:ev_project/screens/homescreen/near_by_station.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/SearchBar.dart';
 import '../../constants/Booked_Ev_Card.dart';
+import 'charging_station_detail.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 

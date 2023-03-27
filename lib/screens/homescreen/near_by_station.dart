@@ -85,7 +85,7 @@ class near_by_stationState extends State<near_by_station> {
                                 child: Container(
                                   // color: Colors.red,
                                   width: screensize.width*0.9,
-                                  height: screenHeight*0.268,
+                                  height: screenHeight*0.27,
                                   child: Card(
                                     // elevation: 7,
                                     shape: RoundedRectangleBorder(

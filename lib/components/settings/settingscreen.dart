@@ -20,31 +20,34 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(child: Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 9,top: 10).r,
+            padding:  EdgeInsets.only(left: screenWidth*0.03,),
             child: Row(
               children: [
             InkWell(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottom_Nav_Bar()));
               },
-                child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,width: 30.w,height: 30.h,)),
-                SizedBox(width: 7,),
+                child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,
+                  width: screenWidth*0.08,height: screenHeight*0.08,)),
+                SizedBox(width: screenWidth*0.02),
                 Text(
                   'Setting',
-                  style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: screenWidth*0.065, fontWeight: FontWeight.bold),
                 ),
            ]
           ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height:screenHeight*0.02),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8).r,
+            padding:  EdgeInsets.symmetric(horizontal:  screenWidth*0.024),
             child: InkWell(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>description(Text: 'Terms & Conditions',)));
@@ -53,15 +56,15 @@ class _SettingState extends State<Setting> {
                 // elevation: 7,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                 child: ListTile(
-                  title: Text('Terms & Conditions',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+                  title: Text('Terms & Conditions',style: TextStyle(fontSize: screenWidth*0.044,fontWeight: FontWeight.w500),),
+                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),  width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(height: screenHeight*0.01),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8).r,
+            padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.024),
             child: InkWell(
 
               onTap: (){
@@ -72,15 +75,15 @@ class _SettingState extends State<Setting> {
                 // elevation: 7,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                 child: ListTile(
-                  title: Text('Privacy Policy',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+                  title: Text('Privacy Policy',style: TextStyle(fontSize: screenWidth*0.044,fontWeight: FontWeight.w500),),
+                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),  width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(height: screenHeight*0.01),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8).r,
+            padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.024),
             child: InkWell(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>description(Text: 'About Us',)));
@@ -89,8 +92,8 @@ class _SettingState extends State<Setting> {
                 // elevation: 7,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                 child: ListTile(
-                  title: Text('About Us',style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: 30.w,height: 30.h,),
+                  title: Text('About Us',style: TextStyle(fontSize:screenWidth*0.044,fontWeight: FontWeight.w500),),
+                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),  width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
