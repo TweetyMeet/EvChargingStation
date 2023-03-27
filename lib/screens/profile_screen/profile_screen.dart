@@ -197,6 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       borderRadius: BorderRadius.circular(10),
                       color: green.withOpacity(0.5),
                     ),
+
                     child: Center(
                         child: Text(
                           'Log Out',
