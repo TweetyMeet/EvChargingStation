@@ -101,6 +101,7 @@ class  editprofileState extends State< editprofile> {
                     padding:  EdgeInsets.only(left: screenWidth*0.03),
                     child: Row(
                       children: [
+
                         InkWell(
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(
