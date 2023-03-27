@@ -4,12 +4,12 @@ import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
+import 'package:ev_project/screens/Sign_Up/username_and_phonenumber.dart';
 import 'package:ev_project/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:email_auth/email_auth.dart';
 import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
@@ -83,7 +83,7 @@ class _SignUpState extends State<SignUp> {
         password: passwordController.text.toString().trim())
         .then((value) {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => LogIN(),
+        builder: (context) => add_username(),
       ));
       setState(() {
         loading = false;
@@ -107,42 +107,43 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
         child: Container(
-          width: 400.w,
-          height: 730.h,
+          width: screenWidth*1,
+          height: screenHeight*1,
           child: Stack(
             children: [
               BackgroundDesign(
                 back_button: false,
               ),
               Positioned(
-                top: 170.h,
+                top: screenHeight*0.23,
                 left: 0,
                 right: 0,
                 child: Padding(
-                  padding: EdgeInsets.all(appPadding).w,
+                  padding: EdgeInsets.all(screenWidth*0.06),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Text(
+                        //   'Hello',
+                        //   style: TextStyle(
+                        //       fontSize: screenWidth*0.1, fontWeight: FontWeight.bold),
+                        // ),
                         Text(
-                          'Hello',
+                          'Let\'s create your account',
                           style: TextStyle(
-                              fontSize: 35.sp, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Let\'s get started',
-                          style: TextStyle(
-                              fontSize: 20.sp,
-                              color: black.withOpacity(0.6),
-                              fontWeight: FontWeight.w800),
+                              fontSize: screenWidth*0.1,
+                              color: black,
+                              fontWeight: FontWeight.bold),
                         ),
                         Padding(
                           padding:
-                              const EdgeInsets.symmetric(vertical: appPadding)
-                                  .r,
+                              EdgeInsets.symmetric(vertical: screenHeight*0.03),
                           child: Form(
                             key: formkey,
                             child: Column(
@@ -150,12 +151,11 @@ class _SignUpState extends State<SignUp> {
                                 Container(
                                   child: ClayContainer(
                                     color: white,
-                                    borderRadius: 30.r,
+                                    borderRadius: 30,
                                     depth: -30,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                              horizontal: appPadding)
-                                          .r,
+                                      padding: EdgeInsets.symmetric(
+                                              horizontal: screenWidth*0.08),
                                       child: TextFormField(
                                         keyboardType: TextInputType.emailAddress,
                                         controller: emailController,
@@ -190,17 +190,16 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10.h,
+                                  height: screenHeight*0.02,
                                 ),
                                 Container(
                                   child: ClayContainer(
                                     color: white,
-                                    borderRadius: 30.r,
+                                    borderRadius: 30,
                                     depth: -30,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                              horizontal: appPadding)
-                                          .r,
+                                      padding: EdgeInsets.symmetric(
+                                              horizontal: screenWidth*0.08),
                                       child: TextFormField(
                                         keyboardType: TextInputType.text,
                                         controller: passwordController,
@@ -218,14 +217,14 @@ class _SignUpState extends State<SignUp> {
                                                   ? Image(
                                                       image: AssetImage(
                                                           'assets/icons/hide.png'),
-                                                      width: 25.w,
-                                                      height: 25.h,
+                                                      width: screenWidth*0.07,
+                                                      height: screenHeight*0.07,
                                                     )
                                                   : Image(
                                                       image: AssetImage(
                                                           'assets/icons/view.png'),
-                                                      width: 25.w,
-                                                      height: 25.h)),
+                                                      width: screenWidth*0.07,
+                                                      height: screenHeight*0.07)),
                                           hintText: 'Password',
                                           border: InputBorder.none,
                                           fillColor: black,
@@ -246,16 +245,16 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10.h,
+                                  height: screenHeight*0.02,
                                 ),
                                 Container(
                                   child: ClayContainer(
                                     color: white,
-                                    borderRadius: 30.r,
+                                    borderRadius: 30,
                                     depth: -30,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                              horizontal: appPadding).r,
+                                      padding: EdgeInsets.symmetric(
+                                              horizontal: screenWidth*0.08),
                                       child: TextFormField(
                                         keyboardType: TextInputType.text,
                                         controller: ConfirmPasswordController,
@@ -272,14 +271,14 @@ class _SignUpState extends State<SignUp> {
                                                   ? Image(
                                                 image: AssetImage(
                                                     'assets/icons/hide.png'),
-                                                width: 25.w,
-                                                height: 25.h,
+                                                width: screenWidth*0.07,
+                                                height: screenHeight*0.07,
                                               )
                                                   : Image(
                                                   image: AssetImage(
                                                       'assets/icons/view.png'),
-                                                  width: 25.w,
-                                                  height: 25.h)),
+                                                  width: screenWidth*0.07,
+                                                  height: screenHeight*0.07)),
                                           hintText: 'Confirm Password',
                                           border: InputBorder.none,
                                           fillColor: black,
@@ -302,6 +301,9 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ]),
                 ),
+              ),
+              SizedBox(
+                height: screenHeight*0.02,
               ),
               BottomContainer(
                 title: 'Sign Up',

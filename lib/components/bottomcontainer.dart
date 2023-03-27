@@ -27,9 +27,8 @@ class BottomContainer extends StatefulWidget {
 class _BottomContainerState extends State<BottomContainer> {
   @override
   Widget build(BuildContext context) {
-
-    Size size = MediaQuery.of(context).size;
-
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Positioned(
       bottom: 0,
         left: 0,
@@ -37,7 +36,7 @@ class _BottomContainerState extends State<BottomContainer> {
           child: Container(
             child: ClayContainer(
               color: white,
-              height: size.height * 0.3,
+              height: screenHeight * 0.25,
               depth: -40,
               spread: 20,
               customBorderRadius: BorderRadius.only(
@@ -46,7 +45,7 @@ class _BottomContainerState extends State<BottomContainer> {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: size.height*0.07,),
+                  SizedBox(height: screenHeight*0.07,),
               InkWell(
                 onTap: widget.onTap,
                 child: ClayContainer(
@@ -55,17 +54,17 @@ class _BottomContainerState extends State<BottomContainer> {
                         borderRadius: 30,
                         curveType: CurveType.convex,
                         child: Padding(
-                          padding:   EdgeInsets.symmetric(vertical: appPadding/2,
-                              horizontal:appPadding *2 ),
+                          padding:   EdgeInsets.symmetric(vertical: screenHeight*0.02,
+                              horizontal:screenWidth*0.17 ),
                           child: widget.loading ? CircularProgressIndicator(color: black,) :
                           Text(widget.title,style: TextStyle(
                             fontWeight: FontWeight.w800,
-                            fontSize: 17
+                            fontSize: screenWidth*0.047
                           ),),
                         ),
                       ),
               ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: screenHeight*0.02,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

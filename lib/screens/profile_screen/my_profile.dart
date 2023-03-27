@@ -56,8 +56,6 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(
@@ -65,48 +63,32 @@ class _MyProfileState extends State<MyProfile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding:  EdgeInsets.only(left: screenWidth*0.03),
+                  padding: const EdgeInsets.only(left: 9,top: 10).r,
                   child: Row(
                     children: [
                       InkWell(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottom_Nav_Bar()));
                           },
-                          child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,
-                            width: screenWidth*0.08,height: screenHeight*0.08,)),
-                      SizedBox(width: screenWidth*0.01),
+                          child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,width: 30.w,height: 30.h,)),
                       Text(
                         'Profile',
-                        style: TextStyle(fontSize: screenWidth*0.065, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight*0.020,
+                  height: 15.h,
                 ),
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.all(screenWidth*0.035),
-                    child: GestureDetector(
-                      onTap: () async{
-                        final  pickImage = await ImagePicker().pickImage(
-                            source:ImageSource.gallery,
-                          imageQuality: 50,
-                        );
-                        if(pickImage != null){
-                          setState(() {
-                            hello = pickImage!.path;
-                      });
-                        }
-
-                      },
+                    padding: const EdgeInsets.all(8.0),
                       child: Container(
                         child:  hello == null ?
                         CircleAvatar(
                           radius: 70,
-                          backgroundColor: green.withOpacity(0.5),
-
+                          backgroundColor: Colors.greenAccent,
                           child: Image.asset("assets/images/add-photo.png",
                             height: 80,
                             width: 80,
@@ -125,51 +107,97 @@ class _MyProfileState extends State<MyProfile> {
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: screenHeight*0.049,),
+                SizedBox(height: 10,),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.03),
+                  padding: const EdgeInsets.symmetric(horizontal: 8).r,
                   child: Card(
-
+                    // elevation: 7,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                     child: ListTile(
-                      title: Text('Name  :  '+ name.text.toString(),style:
-                      TextStyle(fontSize: screenWidth*0.042,fontWeight: FontWeight.w500),),
+                      title: Text("Name :   "+name.text.toString(),style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
                 SizedBox(height: 10,),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal:screenWidth*0.03 ),
+                  padding: const EdgeInsets.symmetric(horizontal: 8).r,
                   child: Card(
                     // elevation: 7,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                     child: ListTile(
-                      title: Text('Phone  :  '+ phone.text.toString(),style: TextStyle(fontSize: screenWidth*0.042,fontWeight: FontWeight.w500),),
+                      title: Text("Phone :  "+phone.text.toString(),style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
                 SizedBox(height: 10,),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.03),
+                  padding: const EdgeInsets.symmetric(horizontal: 8).r,
                   child: Card(
                     // elevation: 7,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
                     child: ListTile(
-                      title: Text('Email   :   '+ email.text.toString(),style: TextStyle(fontSize: screenWidth*0.042,fontWeight: FontWeight.w500),),
+                      title: Text("Email :   "+email.text.toString(),style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight*0.21),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: TextFormField(
+                //     controller: name,
+                //     validator: (v){
+                //       if(v!.isEmpty){
+                //         return "Should not be empty";
+                //       }
+                //     },
+                //     decoration: InputDecoration(
+                //       hintText: "enter a name",
+                //         border: OutlineInputBorder()
+                //     ),
+                //     ),
+                //   ),
+                // SizedBox(height: 10,),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: TextFormField(
+                //     controller: phone,
+                //     validator: (v){
+                //       if(v!.isEmpty){
+                //         return "Should not be empty";
+                //       }
+                //     },
+                //     decoration: InputDecoration(
+                //         hintText: "enter a phone number",
+                //       border: OutlineInputBorder()
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(height: 10,),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: TextFormField(
+                //     controller: email,
+                //     validator: (v){
+                //       if(v!.isEmpty){
+                //         return "Should not be empty";
+                //       }
+                //     },
+                //     decoration: InputDecoration(
+                //         hintText: "enter an email",
+                //
+                //         border: OutlineInputBorder()
+                //     ),
+                //     ),
+                //   ),
+                SizedBox(height: 180,),
                 Padding(
-                  padding:  EdgeInsets.all(screenWidth*0.03),
+                  padding: const EdgeInsets.all(10.0),
                   child: InkWell(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>editprofile()));
                     },
                     child: Container(
-                      height: screenHeight*0.078,
-                      width: screenWidth*0.94,
+                      height: 50.h,
+                      width: 340.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10).w,
                         color: green.withOpacity(0.5),
@@ -177,7 +205,7 @@ class _MyProfileState extends State<MyProfile> {
                       child: Center(
                         child: Text(
                           'Edit Profile',
-                          style: TextStyle(fontSize: screenWidth*0.05, color: textBlack,fontWeight: FontWeight.w500),
+                          style: TextStyle(fontSize: 14.sp, color: textBlack,fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),

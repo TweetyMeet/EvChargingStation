@@ -5,8 +5,6 @@ import 'package:ev_project/screens/forgotpassword/forgot_pass.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../components/background_desgin.dart';
 import '../../components/bottomcontainer.dart';
 import '../../utils/utils.dart';
@@ -68,6 +66,8 @@ class _LogINState extends State<LogIN> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return WillPopScope(
       onWillPop: ()async{
          SystemNavigator.pop();
@@ -77,28 +77,28 @@ class _LogINState extends State<LogIN> {
         backgroundColor: white,
         body: SingleChildScrollView(
           child: Container(
-            width: 400.w,
-            height: 750.h,
+            width: screenWidth*1,
+            height: screenHeight*1,
             child: Stack(
               children: [
                 BackgroundDesign(back_button: false,),
                 Positioned(
-              top: 170.h,
+              top: screenHeight*0.23,
               left: 0,
               right: 0,
               child: Padding(
-                padding: EdgeInsets.all(appPadding).w,
+                padding: EdgeInsets.all(screenWidth*0.06),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Hello',style: TextStyle(
-                          fontSize: 35.sp,fontWeight: FontWeight.bold),),
+                          fontSize: screenWidth*0.1,fontWeight: FontWeight.bold),),
                       Text('Let\'s get started',style: TextStyle(
-                          fontSize: 20.sp,
+                          fontSize: screenWidth*0.05,
                           color: black.withOpacity(0.6),
                           fontWeight: FontWeight.w800),),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: appPadding).r,
+                        padding: EdgeInsets.symmetric(vertical: screenHeight*0.03),
                         child: Form(
                           key: formkey,
                           child: Column(
@@ -106,10 +106,10 @@ class _LogINState extends State<LogIN> {
                               Container(
                                 child: ClayContainer(
                                   color: white,
-                                  borderRadius: 30.r,
+                                  borderRadius: 30,
                                   depth: -30,
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: appPadding).r,
+                                    padding: EdgeInsets.symmetric(horizontal: screenWidth*0.08),
                                     child: TextFormField(
                                       controller:emailController ,
                                       decoration: InputDecoration(
@@ -136,14 +136,14 @@ class _LogINState extends State<LogIN> {
 
                                 ),
                               ),
-                              SizedBox(height: 10.h,),
+                              SizedBox(height: screenHeight*0.02,),
                               Container(
                                 child: ClayContainer(
                                   color: white,
-                                  borderRadius: 30.r,
+                                  borderRadius: 30,
                                   depth: -30,
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: appPadding).r,
+                                    padding: EdgeInsets.symmetric(horizontal: screenWidth*0.08),
                                     child: TextFormField(
                                       keyboardType: TextInputType.text,
                                       controller: passwordController,
@@ -160,14 +160,14 @@ class _LogINState extends State<LogIN> {
                                                 ? Image(
                                               image: AssetImage(
                                                   'assets/icons/hide.png'),
-                                              width: 25.w,
-                                              height: 25.h,
+                                              width: screenWidth*0.07,
+                                              height: screenHeight*0.07,
                                             )
                                                 : Image(
                                                 image: AssetImage(
                                                     'assets/icons/view.png'),
-                                                width: 25.w,
-                                                height: 25.h)),
+                                                width: screenWidth*0.07,
+                                                height: screenHeight*0.07)),
                                         hintText: 'Password',
                                         border: InputBorder.none,
                                         fillColor: black,
@@ -193,13 +193,13 @@ class _LogINState extends State<LogIN> {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(top: appPadding / 2,left: 10).r,
+                        padding: EdgeInsets.only(top: screenHeight*0.02,left: screenWidth*0.02),
                         child: GestureDetector(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> Forgotpassword() ));
                           },
                           child: Text('Forgot Password?',style: TextStyle(
-                              fontSize: 15.sp,
+                              fontSize: screenWidth*0.045,
                               color: black.withOpacity(0.6),
                               fontWeight: FontWeight.w600,
                               decoration: TextDecoration.underline
@@ -213,13 +213,12 @@ class _LogINState extends State<LogIN> {
             ),
 
             Positioned(
-              bottom: 65.h,
+              bottom: screenHeight*0.03,
               left: 0,
               right: 0,
               child: Container(
                 child: Column(
                   children: [
-                    SizedBox(height: 10.h,),
                     InkWell(
                       onTap: () {
                         if (formkey.currentState!.validate()) {
@@ -229,20 +228,20 @@ class _LogINState extends State<LogIN> {
                       child: ClayContainer(
                         color: white,
                         depth: 40,
-                        borderRadius: 30.r,
+                        borderRadius: 30,
                         curveType: CurveType.convex,
                         child: Padding(
-                          padding:   EdgeInsets.symmetric(vertical: appPadding/2,
-                              horizontal:appPadding *2).r,
+                          padding:   EdgeInsets.symmetric(vertical: screenHeight*0.02,
+                              horizontal: screenWidth*0.17),
                           child: widget.loading ? CircularProgressIndicator(color: black,) :
                           Text('Log In',style: TextStyle(
                               fontWeight: FontWeight.w800,
-                              fontSize: 17.sp
+                              fontSize: screenWidth*0.047
                           ),),
                         ),
                       ),
                     ),
-                    SizedBox(height: 15.h,),
+                    SizedBox(height: screenHeight*0.02,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
