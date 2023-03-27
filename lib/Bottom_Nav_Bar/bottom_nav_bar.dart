@@ -3,7 +3,6 @@ import 'package:ev_project/screens/homescreen/homescreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../screens/profile_screen/profile_screen.dart';
@@ -27,21 +26,23 @@ class _Bottom_Nav_BarState extends State<Bottom_Nav_Bar> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
         bottomNavigationBar: Container(
           color: white,
           child: Padding(
-            padding: const EdgeInsets.all(8.0).w,
+            padding: EdgeInsets.all(screenWidth*0.02),
             child: GNav(
               selectedIndex: pageRout,
               backgroundColor: white,
               tabBackgroundColor: skyBlue.withOpacity(0.7),
               color: black,
               activeColor: green,
-              padding: EdgeInsets.all(15).w,
-              gap: 10.w,
+              padding: EdgeInsets.all(screenWidth*0.035),
+              gap: 10,
               onTabChange: (value) {
                 setState(() {
                   pageRout = value ;

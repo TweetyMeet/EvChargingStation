@@ -9,13 +9,13 @@ class BackgroundDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size  = MediaQuery.of(context).size;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Stack(
       children: [
-
         Container(
           color: white,
-          height: size.height*0.4,
+          height: screenHeight*0.4,
           child: Stack(
             children: [
               Positioned(
@@ -56,13 +56,13 @@ class BackgroundDesign extends StatelessWidget {
                   ],
                 ),
                 right: 0,
-                top: -size.height*0.05,
+                top: -screenHeight*0.05,
               )
             ],
           ),
         ),
         Container(
-          height: size.height*0.4,
+          height: screenHeight*0.4,
           child: Stack(
             children: [
               Positioned(
@@ -96,13 +96,13 @@ class BackgroundDesign extends StatelessWidget {
                   ],
 
                 ),
-                left: -size.width*0.05,
-                bottom: size.height*0.1,
+                left: -screenWidth*0.05,
+                bottom: screenHeight*0.1,
               ),
           ],),
         ),
         Container(
-          height: size.height*0.4,
+          height: screenHeight*0.4,
           child: Stack(
             children: [
               Positioned(
@@ -135,7 +135,7 @@ class BackgroundDesign extends StatelessWidget {
                     )
                   ],
                 ),
-                left: size.width*0.52,
+                left: screenWidth*0.52,
                 bottom: 0,
 
               ),

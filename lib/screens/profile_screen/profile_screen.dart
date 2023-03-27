@@ -17,17 +17,28 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  TextEditingController name = TextEditingController();
   
   final auth = FirebaseAuth.instance;
-  String? profilePic;
 
   Future apcall()async{
     final dbRef = await FirebaseFirestore.instance.collection('users');
     dbRef.doc(FirebaseAuth.instance.currentUser!.uid).get().
     then((DocumentSnapshot<Map<String, dynamic>>snapshot) {
-      profilePic = snapshot['profilePic'].toString();
+      name.text = snapshot['name'];
+      String profilePic = snapshot['profilePic'].toString();
+      lists(profilePic);
     });
   }
+
+  void lists(main){
+    setState(() {
+      hello = main;
+    });
+  }
+
+  String? hello;
+
 
   @override
   void initState() {
@@ -54,18 +65,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 15.h,
             ),
             Center(
-              child: CircleAvatar(
-                  radius: 50.r,
-                  backgroundImage: AssetImage("assets/images/PHOTO.png")),
-            ),
-
-
+              child:  Container(
+                  child:  hello == null ?
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundColor: Colors.greenAccent,
+                    child: Image.asset("assets/images/add-photo.png",
+                      height: 50,
+                      width: 50,
+                    ),
+                  ) :
+                  hello.toString().contains('http') ?
+                  CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(hello.toString())
+                  )
+                      : null
+                ),
+              ),
             SizedBox(
               height: 10.h,
             ),
             Center(
                 child: Text(
-              'Meet Pansuriya',
+                  name.text.toString(),
               style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
             )),
             Center(

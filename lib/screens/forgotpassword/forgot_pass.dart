@@ -63,7 +63,8 @@ class _ForgotpasswordState extends State<Forgotpassword> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return WillPopScope(
       onWillPop: ()async{
         SystemNavigator.pop();
@@ -73,30 +74,30 @@ class _ForgotpasswordState extends State<Forgotpassword> {
         backgroundColor: white,
         body: SingleChildScrollView(
           child: Container(
-            width: size.width,
-            height: size.height,
+            width: screenWidth*1,
+            height: screenHeight*1,
             child: Stack(
               children: [
                 BackgroundDesign(back_button: true,),
 
                 Positioned(
-                  top: size.height*0.3,
+                  top: screenHeight*0.23,
                   left: 0,
                   right: 0,
                   child: Padding(
-                    padding: EdgeInsets.all(appPadding),
+                    padding: EdgeInsets.all(screenWidth*0.06),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Hello',style: TextStyle(
-                              fontSize: 35,fontWeight: FontWeight.bold),),
-                          Text('Let\'s get started',style: TextStyle(
-                              fontSize: 20,
-                              color: black.withOpacity(0.6),
-                              fontWeight: FontWeight.w800),),
-                          SizedBox(height: 20,),
+                          // Text('Hello',style: TextStyle(
+                          //     fontSize: screenWidth*0.1,fontWeight: FontWeight.bold),),
+                          Text('Let\'s change your password',style: TextStyle(
+                              fontSize: screenWidth*0.1,
+                              color: black,
+                              fontWeight: FontWeight.bold),),
+                          SizedBox(height: screenHeight*0.03,),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: appPadding),
+                            padding: EdgeInsets.symmetric(vertical: screenHeight*0.03),
                             child: Form(
                               key: formkey,
                               child: Column(
@@ -107,7 +108,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                                       borderRadius: 30,
                                       depth: -30,
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: appPadding),
+                                        padding: EdgeInsets.symmetric(horizontal: screenWidth*0.08),
                                         child: TextFormField(
                                           keyboardType: TextInputType.emailAddress,
                                           controller:emailController,
@@ -135,7 +136,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
 
                                     ),
                                   ),
-                                  SizedBox(height: 10,),
+                                  SizedBox(height: screenHeight*0.02,),
 
                                 ],
                               ),
@@ -146,13 +147,13 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                   ),
                 ),
                 Positioned(
-                  bottom: 200,
+                  bottom: screenHeight*0.09,
                   left: 0,
                   right: 0,
                   child: Container(
                     child: Column(
                       children: [
-                        SizedBox(height: size.height*0.07,),
+                        SizedBox(height: screenHeight*0.07,),
                         InkWell(
                           onTap: () {
                             if (formkey.currentState!.validate()) {
@@ -164,12 +165,12 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                             borderRadius: 30,
                             curveType: CurveType.convex,
                             child: Padding(
-                              padding:   EdgeInsets.symmetric(vertical: appPadding/2,
-                                  horizontal:appPadding *2 ),
+                              padding:   EdgeInsets.symmetric(vertical: screenHeight*0.02,
+                                  horizontal:screenWidth*0.17 ),
                               child: widget.loading ? CircularProgressIndicator(color: black,) :
                               Text('Recover',style: TextStyle(
                                   fontWeight: FontWeight.w800,
-                                  fontSize: 17
+                                  fontSize: screenWidth*0.047
                               ),),
                             ),
                           ),

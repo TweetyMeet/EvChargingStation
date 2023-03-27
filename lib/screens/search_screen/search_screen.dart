@@ -9,7 +9,6 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -140,6 +139,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -158,11 +159,11 @@ class _SearchScreenState extends State<SearchScreen> {
                },
               ),
             Padding(
-              padding: const EdgeInsets.all(8).w,
+              padding: EdgeInsets.symmetric(horizontal: screenWidth*0.04,vertical: screenHeight*0.01),
               child: Column(
                 children: [
                   Container(
-                    height: 40.h,
+                    height: screenHeight*0.06,
                     child: TextFormField(
                       controller: _cont,
                       style: TextStyle(color: textBlack),
@@ -174,30 +175,31 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: iconBlack,
                         ),
                         hintText: 'Search',
-                        hintStyle: TextStyle(color: Colors.grey,fontSize: 13.sp),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10).w,
+                        hintStyle: TextStyle(color: Colors.grey,fontSize: screenWidth*0.033),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(width: 2,color: black),),
-                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 2,color: white),borderRadius: BorderRadius.circular(10).w),
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10).w,borderSide: BorderSide(width: 2,color: white)),
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 2,color: white),borderRadius: BorderRadius.circular(10)),
+                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10),borderSide: BorderSide(width: 2,color: white)),
                       ),
                       validator: (value) {
 
                       },
                     ),
                   ),
-                  Container(
-                      height: 200.h,
-                      child: ListView.builder(
-                        itemCount: _placesList.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            color: white,
-                            child: ListTile(
-                              title: Text(_placesList[index]['description']),
-                            ),
-                          );
-                        },
-                      ))
+                  Expanded(
+                    child: Container(
+                        child: ListView.builder(
+                          itemCount: _placesList.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              color: white,
+                              child: ListTile(
+                                title: Text(_placesList[index]['description']),
+                              ),
+                            );
+                          },
+                        )),
+                  )
                 ],
               ),
             ),
