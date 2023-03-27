@@ -96,6 +96,7 @@ class  editprofileState extends State< editprofile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
+
                     padding:  EdgeInsets.only(left: screenWidth*0.03),
                     child: Row(
                       children: [
