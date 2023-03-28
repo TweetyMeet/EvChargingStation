@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                           itemCount: 4,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: EdgeInsets.only(left: screenWidth*0.06),
+                              padding: EdgeInsets.only(left: screenWidth*0.04),
                               child: Container(
                                 width: screenWidth*0.7,
                                 child: Card(
@@ -317,7 +317,7 @@ class _HomePageState extends State<HomePage> {
                         itemCount: 4,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding:  EdgeInsets.only(left: screenWidth*0.06),
+                            padding:  EdgeInsets.only(left: screenWidth*0.04),
                             child: InkWell(
                               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => charging_station_detail(),)),
                               child: Container(

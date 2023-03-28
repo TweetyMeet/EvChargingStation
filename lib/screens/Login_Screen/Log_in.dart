@@ -112,6 +112,7 @@ class _LogINState extends State<LogIN> {
                                     padding: EdgeInsets.symmetric(horizontal: screenWidth*0.08),
                                     child: TextFormField(
                                       controller:emailController ,
+                                      keyboardType: TextInputType.emailAddress,
                                       decoration: InputDecoration(
                                         hintText: 'Email',
                                         border: InputBorder.none,

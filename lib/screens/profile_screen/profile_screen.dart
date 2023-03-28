@@ -10,7 +10,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -20,29 +19,30 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  TextEditingController name = TextEditingController();
-  
+  // TextEditingController name = TextEditingController();
+
   final auth = FirebaseAuth.instance;
-  String? profilePic;
   
 
   Future apcall()async{
     final dbRef = await FirebaseFirestore.instance.collection('users');
     dbRef.doc(FirebaseAuth.instance.currentUser!.uid).get().
     then((DocumentSnapshot<Map<String, dynamic>>snapshot) {
-      name.text = snapshot['name'];
+      userName = snapshot['name'];
       String profilePic = snapshot['profilePic'].toString();
-      lists(profilePic);
+      lists(userName,profilePic);
     });
   }
 
-  void lists(main){
+  void lists(name,main){
     setState(() {
+      userName = name;
       currentImage = main;
     });
   }
 
   String? currentImage;
+  String? userName;
 
   @override
   void initState() {
@@ -96,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: screenHeight*0.019,
             ),
             Center(
-                child: Text(name.text.toString(),
+                child: Text(userName.toString(),
               style: TextStyle(fontSize: screenHeight*0.023, fontWeight: FontWeight.bold),
             )),
 
@@ -114,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: ListTile(
                     leading: Image(image: AssetImage('assets/icons/account.png'),color: green,
-                      width:  screenWidth*0.07,height: screenHeight*0.07,),
+                      width:  screenWidth*0.06,height: screenHeight*0.06,),
                     title: Text('My Profile',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
                     trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                   ),
@@ -125,10 +125,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: Card(
                 // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
                   leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,
-                    width: screenWidth*0.06,height: screenHeight*0.06,),
+                    width: screenWidth*0.05,height: screenHeight*0.05,),
                   title: Text('Saved Slots',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
                   trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
@@ -138,10 +138,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: Card(
                 // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
                   leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,
-                    width: screenWidth*0.06,height: screenHeight*0.06,),
+                    width: screenWidth*0.05,height: screenHeight*0.05,),
                   title: Text('My Booking',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
                   trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
@@ -155,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: ListTile(
 
                   leading: Image(image: AssetImage('assets/icons/car.png'),color: green,
-                    width: screenWidth*0.06,height: screenHeight*0.06,),
+                    width: screenWidth*0.055,height: screenHeight*0.055,),
                   title: Text('My Car',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
                   trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
@@ -173,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: ListTile(
 
                     leading: Image(image: AssetImage('assets/icons/settings.png'),color: green,
-                      width: screenWidth*0.06,height: screenHeight*0.06,),
+                      width: screenWidth*0.05,height: screenHeight*0.05,),
                     title: Text('Setting',style: TextStyle(fontSize: screenWidth*0.041,fontWeight: FontWeight.w500),),
                     trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                   ),
@@ -181,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             SizedBox(
-              height: screenHeight*0.078,
+              height: screenHeight*0.1,
             ),
             Center(
               child: InkWell(

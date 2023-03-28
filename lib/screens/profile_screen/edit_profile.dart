@@ -12,7 +12,6 @@ import 'package:firebase_storage/firebase_storage.dart'  as firebase_storage;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../constants/constants.dart';
@@ -51,7 +50,6 @@ class  editprofileState extends State< editprofile> {
       return downloadUrl;
     } catch (e) {
       print(e.toString());
-      return null;
     }
   }
 
@@ -96,8 +94,6 @@ class  editprofileState extends State< editprofile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-
-
                     padding:  EdgeInsets.only(left: screenWidth*0.03),
                     child: Row(
                       children: [
@@ -185,6 +181,7 @@ class  editprofileState extends State< editprofile> {
                     padding: EdgeInsets.all(screenWidth*0.03),
                     child: TextFormField(
                       controller: phone,
+                      keyboardType: TextInputType.number,
                       validator: (v) {
                         if (v!.isEmpty) {
                           return "Should not be empty";
@@ -217,7 +214,6 @@ class  editprofileState extends State< editprofile> {
                   Padding(
                     padding: EdgeInsets.all(screenWidth*0.03),
                     child: InkWell(
-
                       onTap: () {
                         uploadImage(File(currentImage!), 'Profile');
                           isLoading = isSaving;
@@ -225,10 +221,7 @@ class  editprofileState extends State< editprofile> {
                           SystemChannels.textInput.invokeListMethod(
                               'TextInput.hide'
                           );
-
-
                             saveinfo();
-
                         }
                       },
                       child: Container(
@@ -236,8 +229,7 @@ class  editprofileState extends State< editprofile> {
                         width: screenWidth*0.94,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius
-                              .circular(10)
-                              .w,
+                              .circular(10),
                           color: green.withOpacity(0.5),
                         ),
                         child: Center(
@@ -269,19 +261,39 @@ class  editprofileState extends State< editprofile> {
       isSaving = true;
     });
     uploadImage(File(currentImage!), 'Profile').whenComplete(() {
-      Map<String, dynamic> data = {
-        'name': name.text,
-        'phone': phone.text,
-        'email': email.text,
-        'profilePic': downloadUrl,
-      };
-      FirebaseFirestore.instance.collection('users').
-      doc(FirebaseAuth.instance.currentUser!.uid).set(data).whenComplete(() {
-        FirebaseAuth.instance.currentUser!.updateDisplayName(name.text);
-        setState(() {
-          isSaving = false;
+      if(downloadUrl.toString().contains('http')) {
+        Map<String, dynamic> data = {
+          'name': name.text,
+          'phone': phone.text,
+          'email': email.text,
+          'profilePic': downloadUrl,
+        };
+        FirebaseFirestore.instance.collection('users').
+        doc(FirebaseAuth.instance.currentUser!.uid)
+            .update(data)
+            .whenComplete(() {
+          FirebaseAuth.instance.currentUser!.updateDisplayName(name.text);
+          setState(() {
+            isSaving = false;
+          });
         });
-      });
+      } else{
+        Map<String, dynamic> data = {
+          'name': name.text,
+          'phone': phone.text,
+          'email': email.text,
+          'profilePic': currentImage,
+        };
+        FirebaseFirestore.instance.collection('users').
+        doc(FirebaseAuth.instance.currentUser!.uid)
+            .update(data)
+            .whenComplete(() {
+          FirebaseAuth.instance.currentUser!.updateDisplayName(name.text);
+          setState(() {
+            isSaving = false;
+          });
+        });
+      }
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyProfile(),));
     });
   }

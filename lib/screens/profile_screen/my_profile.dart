@@ -8,7 +8,6 @@ import 'package:ev_project/screens/profile_screen/edit_profile.dart';
 import 'package:ev_project/screens/profile_screen/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../constants/constants.dart';
@@ -23,29 +22,35 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
-  TextEditingController name = TextEditingController();
-  TextEditingController phone = TextEditingController();
-  TextEditingController email = TextEditingController();
+  // TextEditingController name = TextEditingController();
+  // TextEditingController phone = TextEditingController();
+  // TextEditingController email = TextEditingController();
 
   Future apcall()async{
     final dbRef = await FirebaseFirestore.instance.collection('users');
     dbRef.doc(FirebaseAuth.instance.currentUser!.uid).get().
     then((DocumentSnapshot<Map<String, dynamic>>snapshot) {
-      name.text = snapshot['name'];
-      phone.text = snapshot['phone'];
-      email.text = snapshot['email'];
+      userName = snapshot['name'];
+      userPhone = snapshot['phone'];
+      userEmail = snapshot['email'];
       String profilePic = snapshot['profilePic'].toString();
-      lists(profilePic);
+      lists(userName,userPhone,userEmail,profilePic);
     });
   }
 
-  void lists(main){
+  void lists(name,phone,email,main){
     setState(() {
-      hello = main;
+      userName = name;
+      userPhone = phone;
+      userEmail = email;
+      userImage = main;
       });
   }
 
- String? hello;
+ String? userImage;
+  String? userName;
+  String? userPhone;
+  String? userEmail;
 
   @override
   void initState() {
@@ -56,6 +61,8 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
           body: SingleChildScrollView(
@@ -63,149 +70,101 @@ class _MyProfileState extends State<MyProfile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 9,top: 10).r,
+                  padding: EdgeInsets.only(left: screenWidth*0.03),
                   child: Row(
                     children: [
                       InkWell(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottom_Nav_Bar()));
                           },
-                          child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,width: 30.w,height: 30.h,)),
+                          child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,width: screenWidth*0.08,height: screenHeight*0.08,)),
                       Text(
                         'Profile',
-                        style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: screenWidth*0.065, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: screenHeight*0.020,
                 ),
                 Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(screenWidth*0.035),
                       child: Container(
-                        child:  hello == null ?
+                        child:  userImage == null ?
                         CircleAvatar(
                           radius: 70,
-                          backgroundColor: Colors.greenAccent,
+                          backgroundColor: green.withOpacity(0.5),
                           child: Image.asset("assets/images/add-photo.png",
                             height: 80,
                             width: 80,
                           ),
                         ) :
-                        hello.toString().contains('http') ?
+                        userImage.toString().contains('http') ?
                         CircleAvatar(
                             radius: 70,
-                            backgroundImage: NetworkImage(hello.toString())
+                            backgroundImage: NetworkImage(userImage.toString())
                         )
                             : CircleAvatar(
                           radius: 70,
-                          backgroundImage: FileImage(File(hello.toString())),
+                          backgroundImage: FileImage(File(userImage.toString())),
                         ),
 
                       ),
                     ),
                   ),
-                SizedBox(height: 10,),
+                SizedBox(height: screenHeight*0.038,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8).r,
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth*0.03),
                   child: Card(
                     // elevation: 7,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     child: ListTile(
-                      title: Text("Name :   "+name.text.toString(),style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
+                      title: Text("Name :   "+userName.toString(),style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: screenHeight*0.01,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8).r,
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth*0.03),
                   child: Card(
                     // elevation: 7,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     child: ListTile(
-                      title: Text("Phone :  "+phone.text.toString(),style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
+                      title: Text("Phone :  "+userPhone.toString(),style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: screenHeight*0.01,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8).r,
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth*0.03),
                   child: Card(
                     // elevation: 7,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     child: ListTile(
-                      title: Text("Email :   "+email.text.toString(),style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.w500),),
+                      title: Text("Email :   "+userEmail.toString(),style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: TextFormField(
-                //     controller: name,
-                //     validator: (v){
-                //       if(v!.isEmpty){
-                //         return "Should not be empty";
-                //       }
-                //     },
-                //     decoration: InputDecoration(
-                //       hintText: "enter a name",
-                //         border: OutlineInputBorder()
-                //     ),
-                //     ),
-                //   ),
-                // SizedBox(height: 10,),
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: TextFormField(
-                //     controller: phone,
-                //     validator: (v){
-                //       if(v!.isEmpty){
-                //         return "Should not be empty";
-                //       }
-                //     },
-                //     decoration: InputDecoration(
-                //         hintText: "enter a phone number",
-                //       border: OutlineInputBorder()
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(height: 10,),
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: TextFormField(
-                //     controller: email,
-                //     validator: (v){
-                //       if(v!.isEmpty){
-                //         return "Should not be empty";
-                //       }
-                //     },
-                //     decoration: InputDecoration(
-                //         hintText: "enter an email",
-                //
-                //         border: OutlineInputBorder()
-                //     ),
-                //     ),
-                //   ),
-                SizedBox(height: 180,),
+                SizedBox(height: screenHeight*0.233,),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(screenWidth*0.03),
                   child: InkWell(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>editprofile()));
                     },
                     child: Container(
-                      height: 50.h,
-                      width: 340.w,
+                      height: screenHeight*0.074,
+                      width: screenWidth*0.94,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10).w,
+                        borderRadius: BorderRadius.circular(10),
                         color: green.withOpacity(0.5),
                       ),
                       child: Center(
                         child: Text(
                           'Edit Profile',
-                          style: TextStyle(fontSize: 14.sp, color: textBlack,fontWeight: FontWeight.w500),
+                          style: TextStyle(fontSize: screenWidth*0.05, color: textBlack,fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),

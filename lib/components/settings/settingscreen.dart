@@ -2,8 +2,6 @@ import 'package:ev_project/Bottom_Nav_Bar/bottom_nav_bar.dart';
 import 'package:ev_project/components/settings/description.dart';
 import 'package:ev_project/screens/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../constants/constants.dart';
 
 
@@ -54,7 +52,7 @@ class _SettingState extends State<Setting> {
               },
               child: Card(
                 // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
                   title: Text('Terms & Conditions',style: TextStyle(fontSize: screenWidth*0.044,fontWeight: FontWeight.w500),),
                   trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),  width: screenWidth*0.08,height: screenHeight*0.08,),
@@ -73,7 +71,7 @@ class _SettingState extends State<Setting> {
               },
               child: Card(
                 // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
                   title: Text('Privacy Policy',style: TextStyle(fontSize: screenWidth*0.044,fontWeight: FontWeight.w500),),
                   trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),  width: screenWidth*0.08,height: screenHeight*0.08,),
@@ -90,7 +88,7 @@ class _SettingState extends State<Setting> {
               },
               child: Card(
                 // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10).w),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
                   title: Text('About Us',style: TextStyle(fontSize:screenWidth*0.044,fontWeight: FontWeight.w500),),
                   trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),  width: screenWidth*0.08,height: screenHeight*0.08,),

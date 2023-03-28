@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:clay_containers/widgets/clay_container.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
@@ -82,6 +83,16 @@ class _SignUpState extends State<SignUp> {
         email: emailController.text.toString().trim(),
         password: passwordController.text.toString().trim())
         .then((value) {
+      Map<String, dynamic> data = {
+        'email': emailController.text,
+        'phone': null,
+        'email': null,
+        'profilePic': null,
+      };
+      FirebaseFirestore.instance.collection('users').
+      doc(FirebaseAuth.instance.currentUser!.uid).set(data).whenComplete(() {
+        FirebaseAuth.instance.currentUser!.updateDisplayName(emailController.text);
+      });
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => add_username(),
       ));

@@ -1,7 +1,6 @@
 import 'package:ev_project/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../components/SearchBar.dart';
 import '../../constants/Booked_Ev_Card.dart';
@@ -31,13 +30,13 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
 
 
                Card(
-                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12).w),
+                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                  // elevation: 7,
                  child: Container(
                    width: screenWidth*0.95,
                  height: screenHeight*0.07,
                  decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(12).w,
+                   borderRadius: BorderRadius.circular(12),
                    color: Colors.black.withOpacity(0.1),
                  ),
 
