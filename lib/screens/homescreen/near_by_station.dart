@@ -20,27 +20,27 @@ class near_by_station extends StatefulWidget {
 class near_by_stationState extends State<near_by_station> {
   Query dbRef = FirebaseDatabase.instance.ref().child('0');
 
-  List images = [
-    'assets/images/download (2).jpg',
-    'assets/images/1200x-1.jpg',
-    'assets/images/images (1).jpg',
-    'assets/images/images (2).jpg',
-    'assets/images/download (2).jpg',
-    'assets/images/1200x-1.jpg',
-    'assets/images/images (1).jpg',
-    'assets/images/images (2).jpg',
-    'assets/images/download (2).jpg',
-    'assets/images/1200x-1.jpg',
-    'assets/images/images (1).jpg',
-    'assets/images/images (2).jpg',
-    'assets/images/download (2).jpg',
-    'assets/images/1200x-1.jpg',
-    'assets/images/images (1).jpg',
-    'assets/images/images (2).jpg',
-    'assets/images/download (2).jpg',
-    'assets/images/1200x-1.jpg',
-    'assets/images/images (1).jpg',
-  ];
+  // List images = [
+  //   'assets/images/download (2).jpg',
+  //   'assets/images/1200x-1.jpg',
+  //   'assets/images/images (1).jpg',
+  //   'assets/images/images (2).jpg',
+  //   'assets/images/download (2).jpg',
+  //   'assets/images/1200x-1.jpg',
+  //   'assets/images/images (1).jpg',
+  //   'assets/images/images (2).jpg',
+  //   'assets/images/download (2).jpg',
+  //   'assets/images/1200x-1.jpg',
+  //   'assets/images/images (1).jpg',
+  //   'assets/images/images (2).jpg',
+  //   'assets/images/download (2).jpg',
+  //   'assets/images/1200x-1.jpg',
+  //   'assets/images/images (1).jpg',
+  //   'assets/images/images (2).jpg',
+  //   'assets/images/download (2).jpg',
+  //   'assets/images/1200x-1.jpg',
+  //   'assets/images/images (1).jpg',
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +123,7 @@ class near_by_stationState extends State<near_by_station> {
                                                 decoration: BoxDecoration(
                                                     image: DecorationImage(
                                                         image: AssetImage(
-                                                            images[index]),
+                                                            Main[index]['photos'][0]['src'].toString()),
                                                         fit: BoxFit.cover),
                                                     borderRadius:
                                                     BorderRadius.circular(15)),

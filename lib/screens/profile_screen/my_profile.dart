@@ -75,9 +75,9 @@ class _MyProfileState extends State<MyProfile> {
                     children: [
                       InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottom_Nav_Bar()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> const Bottom_Nav_Bar()));
                           },
-                          child: Image(image: AssetImage('assets/icons/back-arrow.png'),color: black,width: screenWidth*0.08,height: screenHeight*0.08,)),
+                          child: Image(image: const AssetImage('assets/icons/back-arrow.png'),color: black,width: screenWidth*0.08,height: screenHeight*0.08,)),
                       Text(
                         'Profile',
                         style: TextStyle(fontSize: screenWidth*0.065, fontWeight: FontWeight.bold),
@@ -121,7 +121,7 @@ class _MyProfileState extends State<MyProfile> {
                     // elevation: 7,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     child: ListTile(
-                      title: Text("Name :   "+userName.toString(),style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
+                      title: Text("Name :   ${userName.toString()}",style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
@@ -132,7 +132,7 @@ class _MyProfileState extends State<MyProfile> {
                     // elevation: 7,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     child: ListTile(
-                      title: Text("Phone :  "+userPhone.toString(),style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
+                      title: Text("Phone :  ${userPhone.toString()}",style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
@@ -143,7 +143,7 @@ class _MyProfileState extends State<MyProfile> {
                     // elevation: 7,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     child: ListTile(
-                      title: Text("Email :   "+userEmail.toString(),style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
+                      title: Text("Email :   ${userEmail.toString()}",style: TextStyle(fontSize: screenWidth*0.04,fontWeight: FontWeight.w500),),
                     ),
                   ),
                 ),
@@ -152,7 +152,7 @@ class _MyProfileState extends State<MyProfile> {
                   padding: EdgeInsets.all(screenWidth*0.03),
                   child: InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>editprofile()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const editprofile()));
                     },
                     child: Container(
                       height: screenHeight*0.074,

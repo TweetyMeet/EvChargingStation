@@ -107,16 +107,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: EdgeInsets.symmetric(horizontal: screenWidth*0.021),
               child: InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> MyProfile()));
                 },
                 child: Card(
                   // elevation: 7,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: ListTile(
-                    leading: Image(image: AssetImage('assets/icons/account.png'),color: green,
+                    leading: Image(image: const AssetImage('assets/icons/account.png'),color: green,
                       width:  screenWidth*0.06,height: screenHeight*0.06,),
                     title: Text('My Profile',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
-                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
+                    trailing:Image(image: const AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                   ),
                 ),
               ),
@@ -127,10 +127,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // elevation: 7,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
-                  leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,
+                  leading: Image(image: const AssetImage('assets/icons/bookmark(2).png'),color: green,
                     width: screenWidth*0.05,height: screenHeight*0.05,),
                   title: Text('Saved Slots',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
+                  trailing:Image(image: const AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
@@ -140,10 +140,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // elevation: 7,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
-                  leading: Image(image: AssetImage('assets/icons/bookmark(2).png'),color: green,
+                  leading: Image(image: const AssetImage('assets/icons/bookmark(2).png'),color: green,
                     width: screenWidth*0.05,height: screenHeight*0.05,),
                   title: Text('My Booking',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
+                  trailing:Image(image: const AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
@@ -154,10 +154,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
 
-                  leading: Image(image: AssetImage('assets/icons/car.png'),color: green,
+                  leading: Image(image: const AssetImage('assets/icons/car.png'),color: green,
                     width: screenWidth*0.055,height: screenHeight*0.055,),
                   title: Text('My Car',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
+                  trailing:Image(image: const AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                 ),
               ),
             ),
@@ -172,10 +172,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: ListTile(
 
-                    leading: Image(image: AssetImage('assets/icons/settings.png'),color: green,
+                    leading: Image(image: const AssetImage('assets/icons/settings.png'),color: green,
                       width: screenWidth*0.05,height: screenHeight*0.05,),
                     title: Text('Setting',style: TextStyle(fontSize: screenWidth*0.041,fontWeight: FontWeight.w500),),
-                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
+                    trailing:Image(image: const AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
                   ),
                 ),
               ),

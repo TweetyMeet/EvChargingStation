@@ -51,6 +51,7 @@ class  editprofileState extends State< editprofile> {
     } catch (e) {
       print(e.toString());
     }
+    return null;
   }
 
 
@@ -100,9 +101,9 @@ class  editprofileState extends State< editprofile> {
                         InkWell(
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => MyProfile()));
+                                  builder: (context) => const MyProfile()));
                             },
-                            child: Image(image: AssetImage(
+                            child: Image(image: const AssetImage(
                                 'assets/icons/back-arrow.png'),
                               color: black,
                               width:  screenWidth*0.08,
@@ -131,10 +132,9 @@ class  editprofileState extends State< editprofile> {
                           if (pickImage != null) {
                             setState(() {
                               currentImage = pickImage.path;
-
                             });
                           }else{
-                            print('error');
+                            Utils().toastMessage("error");
                           }
                         },
                         child: Container(
@@ -169,8 +169,9 @@ class  editprofileState extends State< editprofile> {
                         if (v!.isEmpty) {
                           return "Should not be empty";
                         }
+                        return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: "enter a name",
                           border: OutlineInputBorder()
                       ),
@@ -186,8 +187,9 @@ class  editprofileState extends State< editprofile> {
                         if (v!.isEmpty) {
                           return "Should not be empty";
                         }
+                        return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: "enter a phone number",
                           border: OutlineInputBorder()
                       ),
@@ -202,8 +204,9 @@ class  editprofileState extends State< editprofile> {
                         if (v!.isEmpty) {
                           return "Should not be empty";
                         }
+                        return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: "enter an email",
 
                           border: OutlineInputBorder()
@@ -285,16 +288,14 @@ class  editprofileState extends State< editprofile> {
           'profilePic': currentImage,
         };
         FirebaseFirestore.instance.collection('users').
-        doc(FirebaseAuth.instance.currentUser!.uid)
-            .update(data)
-            .whenComplete(() {
+        doc(FirebaseAuth.instance.currentUser!.uid).update(data).whenComplete(() {
           FirebaseAuth.instance.currentUser!.updateDisplayName(name.text);
           setState(() {
             isSaving = false;
           });
         });
       }
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyProfile(),));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MyProfile(),));
     });
   }
 }

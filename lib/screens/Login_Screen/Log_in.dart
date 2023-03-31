@@ -81,7 +81,7 @@ class _LogINState extends State<LogIN> {
             height: screenHeight*1,
             child: Stack(
               children: [
-                BackgroundDesign(back_button: false,),
+                const BackgroundDesign(back_button: false,),
                 Positioned(
               top: screenHeight*0.23,
               left: 0,
@@ -113,7 +113,7 @@ class _LogINState extends State<LogIN> {
                                     child: TextFormField(
                                       controller:emailController ,
                                       keyboardType: TextInputType.emailAddress,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         hintText: 'Email',
                                         border: InputBorder.none,
                                         fillColor: black,
@@ -159,13 +159,13 @@ class _LogINState extends State<LogIN> {
                                             },
                                             icon: passwordObscureText
                                                 ? Image(
-                                              image: AssetImage(
+                                              image: const AssetImage(
                                                   'assets/icons/hide.png'),
                                               width: screenWidth*0.07,
                                               height: screenHeight*0.07,
                                             )
                                                 : Image(
-                                                image: AssetImage(
+                                                image: const AssetImage(
                                                     'assets/icons/view.png'),
                                                 width: screenWidth*0.07,
                                                 height: screenHeight*0.07)),
@@ -234,7 +234,7 @@ class _LogINState extends State<LogIN> {
                         child: Padding(
                           padding:   EdgeInsets.symmetric(vertical: screenHeight*0.02,
                               horizontal: screenWidth*0.17),
-                          child: widget.loading ? CircularProgressIndicator(color: black,) :
+                          child: widget.loading ? const CircularProgressIndicator(color: black,) :
                           Text('Log In',style: TextStyle(
                               fontWeight: FontWeight.w800,
                               fontSize: screenWidth*0.047
@@ -246,11 +246,11 @@ class _LogINState extends State<LogIN> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account?",style: TextStyle(color: black),),
+                       const Text("Don't have an account?",style: TextStyle(color: black),),
                         TextButton(onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp() ));
                         },
-                            child: Text('Sign Up',style: TextStyle(color: black),)
+                            child: const Text('Sign Up',style: TextStyle(color: black),)
                         ),
                       ],
                     ),

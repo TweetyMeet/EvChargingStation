@@ -15,10 +15,9 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   SplashServices splash = SplashServices();
-  @override
-
   late AnimationController controller;
 
+  @override
   void dispose(){
     super.dispose();
     controller.dispose();
@@ -29,7 +28,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
 
     super.initState();
