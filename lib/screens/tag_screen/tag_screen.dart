@@ -13,7 +13,7 @@ class TagScreen extends StatefulWidget {
 }
 
 class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMixin {
-  late  TabController _tabController = TabController(length: 3, vsync: this);
+  late final  TabController _tabController = TabController(length: 3, vsync: this);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                        color: green.withOpacity(0.5),
                      ),
 
-                     tabs: [
+                     tabs: const [
                        Tab(text: "Ongoing",),
                        Tab(text: "Booked",),
                        Tab(text: "History",),
@@ -66,7 +66,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                    controller: _tabController,
                    children: [
                      ListView.builder(
-                   physics: BouncingScrollPhysics(),
+                   physics: const BouncingScrollPhysics(),
                    itemCount: 10,
                    itemBuilder: (context,index){
                      return Container(
@@ -77,7 +77,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                    },
                  ),
                      ListView.builder(
-                       physics: BouncingScrollPhysics(),
+                       physics: const BouncingScrollPhysics(),
                        itemCount: 10,
                        itemBuilder: (context,index){
                          return Container(
@@ -89,7 +89,7 @@ class _TagScreenState extends State<TagScreen> with SingleTickerProviderStateMix
                        },
                      ),
                      ListView.builder(
-                       physics: BouncingScrollPhysics(),
+                       physics: const BouncingScrollPhysics(),
                        itemCount: 10,
                        itemBuilder: (context,index){
                          return Container(

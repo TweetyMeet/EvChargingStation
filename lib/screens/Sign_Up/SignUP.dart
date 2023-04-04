@@ -32,7 +32,7 @@ class _SignUpState extends State<SignUp> {
   // final otpController = TextEditingController();
   final emailfocusnode = FocusNode();
   final passwordfocusnode = FocusNode();
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
   @override
@@ -48,7 +48,7 @@ class _SignUpState extends State<SignUp> {
   bool isEmail(String email) {
     String p =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regExp = new RegExp(p);
+    RegExp regExp = RegExp(p);
     return regExp.hasMatch(email);
   }
   // EmailAuth emailAuth =  new EmailAuth(sessionName: "Sample session");
@@ -94,7 +94,7 @@ class _SignUpState extends State<SignUp> {
         FirebaseAuth.instance.currentUser!.updateDisplayName(emailController.text);
       });
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => add_username(),
+        builder: (context) => const add_username(),
       ));
       setState(() {
         loading = false;
@@ -128,7 +128,7 @@ class _SignUpState extends State<SignUp> {
           height: screenHeight*1,
           child: Stack(
             children: [
-              BackgroundDesign(
+              const BackgroundDesign(
                 back_button: false,
               ),
               Positioned(
@@ -177,7 +177,7 @@ class _SignUpState extends State<SignUp> {
                                               emailfocusnode,
                                               passwordfocusnode);
                                         },
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           hintText: 'Email',
                                           border: InputBorder.none,
                                           fillColor: black,
@@ -226,13 +226,13 @@ class _SignUpState extends State<SignUp> {
                                               },
                                               icon: passwordObscureText
                                                   ? Image(
-                                                      image: AssetImage(
+                                                      image: const AssetImage(
                                                           'assets/icons/hide.png'),
                                                       width: screenWidth*0.07,
                                                       height: screenHeight*0.07,
                                                     )
                                                   : Image(
-                                                      image: AssetImage(
+                                                      image: const AssetImage(
                                                           'assets/icons/view.png'),
                                                       width: screenWidth*0.07,
                                                       height: screenHeight*0.07)),
@@ -280,13 +280,13 @@ class _SignUpState extends State<SignUp> {
                                               },
                                               icon: confiemPasswordObscureText
                                                   ? Image(
-                                                image: AssetImage(
+                                                image: const AssetImage(
                                                     'assets/icons/hide.png'),
                                                 width: screenWidth*0.07,
                                                 height: screenHeight*0.07,
                                               )
                                                   : Image(
-                                                  image: AssetImage(
+                                                  image: const AssetImage(
                                                       'assets/icons/view.png'),
                                                   width: screenWidth*0.07,
                                                   height: screenHeight*0.07)),

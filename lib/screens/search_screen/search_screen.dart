@@ -24,19 +24,13 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
-
-
 class _SearchScreenState extends State<SearchScreen> {
 
-
-
-  TextEditingController _cont = TextEditingController();
-
-
+  final TextEditingController _cont = TextEditingController();
 
   Completer<GoogleMapController> Controller = Completer();
 
-  static final CameraPosition _kLake = CameraPosition(
+  static const CameraPosition _kLake = CameraPosition(
       target: LatLng(21.1597122,72.7700844), zoom: 14);
 
   List<Marker> list = [];
@@ -49,6 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
       lists(Main2);
     });
   }
+
   @override
   void initState(){
     acall();
@@ -67,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
             position: LatLng(Main[i]['location']['latitude'],
                 Main[i]['location']['longitude']),
             infoWindow: InfoWindow(title: "address:",
-            snippet:  '${Main[i]['address'].toString()}'),
+            snippet:  Main[i]['address'].toString()),
           ),
         );
       }
@@ -78,15 +73,14 @@ class _SearchScreenState extends State<SearchScreen> {
     await Geolocator.requestPermission().then((value){
 
     }).onError((error, stackTrace){
-      debugPrint("error"+error.toString());
+      debugPrint("error${error.toString()}");
     });
-
     return await Geolocator.getCurrentPosition();
   }
 
   List<dynamic> _placesList = [];
 
-  var uuid = Uuid();
+  var uuid = const Uuid();
   String _sessionToken = "122344";
 
   void onChange(){
@@ -107,8 +101,8 @@ class _SearchScreenState extends State<SearchScreen> {
     var data = response.body.toString();
 
     debugPrint('data');
-    debugPrint("$data");
-    debugPrint('${response.body.toString()}');
+    debugPrint(data);
+    debugPrint(response.body.toString());
     if(response.statusCode == 200){
       setState(() {
         _placesList = jsonDecode(response.body.toString()) ['predictions'];
@@ -116,9 +110,29 @@ class _SearchScreenState extends State<SearchScreen> {
     }else{
       throw Exception('Failed to load data');
     }
-
   }
 
+  String? description;
+  double? latitud;
+  double? longitud;
+
+  Future<Map<String, double>> getLocationFromPlaceId(String placeId) async {
+    const apiKey = 'AIzaSyCQS5e5tX4bncZcZyuWMpsmZNUVWF_Vwj8';
+    final url = 'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&fields=geometry&key=$apiKey';
+    final response = await http.get(Uri.parse(url));
+    final data = json.decode(response.body);
+    final lat = data['result']['geometry']['location']['lat'];
+    final lng = data['result']['geometry']['location']['lng'];
+    return {'lat': lat, 'lng': lng};
+  }
+
+  Future latlog() async {
+    final location = await getLocationFromPlaceId(description.toString());
+    final lat = location['lat'];
+    final lng = location['lng'];
+    latitud = lat;
+    longitud = lng;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,40 +164,47 @@ class _SearchScreenState extends State<SearchScreen> {
                     height: screenHeight*0.06,
                     child: TextFormField(
                       controller: _cont,
-                      style: TextStyle(color: textBlack),
+                      style: const TextStyle(color: textBlack),
                       cursorColor: black,
                       decoration: InputDecoration(
                         fillColor: white,
                         filled: true,
-                        prefixIcon: Icon(Icons.search,
+                        prefixIcon: const Icon(Icons.search,
                           color: iconBlack,
                         ),
                         hintText: 'Search',
                         hintStyle: TextStyle(color: Colors.grey,fontSize: screenWidth*0.033),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(width: 2,color: black),),
-                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 2,color: white),borderRadius: BorderRadius.circular(10)),
-                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10),borderSide: BorderSide(width: 2,color: white)),
+                          borderSide: const BorderSide(width: 2,color: black),),
+                        focusedBorder: OutlineInputBorder(borderSide: const BorderSide(width: 2,color: white),borderRadius: BorderRadius.circular(10)),
+                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10),borderSide: const BorderSide(width: 2,color: white)),
                       ),
                       validator: (value) {
-
+                        return null;
                       },
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                        child: ListView.builder(
-                          itemCount: _placesList.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              color: white,
-                              child: ListTile(
-                                title: Text(_placesList[index]['description']),
+                  Container(
+                    width: screenWidth*0.9,
+                      height: screenHeight*0.3,
+                      child: ListView.builder(
+                        itemCount: _placesList.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            color: white,
+                            child: ListTile(
+                              title: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    description = _placesList[index]['place_id'];
+                                  });
+                                },
+                                  child: Text(_placesList[index]['description'])
                               ),
-                            );
-                          },
-                        )),
-                  )
+                            ),
+                          );
+                        },
+                      ))
                 ],
               ),
             ),
@@ -202,14 +223,13 @@ class _SearchScreenState extends State<SearchScreen> {
             )));
             setState(() {});
             list.add(
-              Marker(markerId: MarkerId('live'),
-                position: LatLng(value.latitude,
-                    value.longitude),
+              Marker(markerId: const MarkerId('live'),
+                position: LatLng(value.latitude, value.longitude),
               ),
             );
           });
           },
-          child: Icon(Icons.my_location_outlined),
+          child: const Icon(Icons.my_location_outlined),
         ),
       ),
     );

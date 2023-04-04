@@ -29,15 +29,10 @@ class _add_usernameState extends State<add_username> {
   final formkey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   bool isSaving = false;
   bool isLoading = true;
-
-
-  @override
-  void dispose() {
-  }
 
   bool passwordObscureText = true;
   bool confiemPasswordObscureText = true;
@@ -67,7 +62,7 @@ class _add_usernameState extends State<add_username> {
           isSaving = false;
         });
       });
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LogIN(),));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LogIN(),));
   }
 
   @override
@@ -82,7 +77,7 @@ class _add_usernameState extends State<add_username> {
           height: screenHeight*1,
           child: Stack(
             children: [
-              BackgroundDesign(
+             const BackgroundDesign(
                 back_button: false,
               ),
               Positioned(
@@ -123,7 +118,7 @@ class _add_usernameState extends State<add_username> {
                                           horizontal: screenWidth*0.08),
                                       child: TextFormField(
                                         controller: nameController,
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           hintText: 'Username',
                                           border: InputBorder.none,
                                           fillColor: black,
@@ -154,7 +149,7 @@ class _add_usernameState extends State<add_username> {
                                       child: TextFormField(
                                         keyboardType: TextInputType.number,
                                         controller: phoneController,
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           hintText: 'Enter Number',
                                           border: InputBorder.none,
                                           fillColor: black,
