@@ -136,6 +136,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 },
                 mapType: MapType.normal,
                 zoomControlsEnabled: true,
+
                 markers: Set<Marker>.from(list),
                onTap: (position){
                  lists(position);

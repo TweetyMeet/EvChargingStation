@@ -152,7 +152,8 @@ class _MyProfileState extends State<MyProfile> {
                   padding: EdgeInsets.all(screenWidth*0.03),
                   child: InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>editprofile()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>editprofile()));
+
                     },
                     child: Container(
                       height: screenHeight*0.074,

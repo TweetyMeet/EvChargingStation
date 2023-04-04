@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ev_project/components/settings/settingscreen.dart';
 import 'package:ev_project/constants/constants.dart';
 import 'package:ev_project/screens/Login_Screen/Log_in.dart';
+import 'package:ev_project/screens/My_Car/my_car.dart';
 import 'package:ev_project/screens/profile_screen/my_profile.dart';
 import 'package:ev_project/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -88,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     radius: 60,
                     backgroundImage: NetworkImage(currentImage.toString())
                 )
-                    : null
+                    : CircularProgressIndicator()
                 ),
 
               ),
@@ -149,15 +150,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: screenWidth*0.021),
-              child: Card(
-                // elevation: 7,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: ListTile(
+              child: InkWell(
+                onTap: (){
 
-                  leading: Image(image: AssetImage('assets/icons/car.png'),color: green,
-                    width: screenWidth*0.055,height: screenHeight*0.055,),
-                  title: Text('My Car',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
-                  trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MyCar()));
+
+                },
+                child: Card(
+                  // elevation: 7,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  child: ListTile(
+
+                    leading: Image(image: AssetImage('assets/icons/car.png'),color: green,
+                      width: screenWidth*0.055,height: screenHeight*0.055,),
+                    title: Text('My Car',style: TextStyle(fontSize:  screenWidth*0.041,fontWeight: FontWeight.w500),),
+                    trailing:Image(image: AssetImage('assets/icons/right-arrow.png'),width: screenWidth*0.08,height: screenHeight*0.08,),
+                  ),
                 ),
               ),
             ),
@@ -181,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             SizedBox(
-              height: screenHeight*0.1,
+              height: screenHeight*0.08,
             ),
             Center(
               child: InkWell(

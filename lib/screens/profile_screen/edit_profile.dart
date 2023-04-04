@@ -222,6 +222,7 @@ class  editprofileState extends State< editprofile> {
                               'TextInput.hide'
                           );
                             saveinfo();
+
                         }
                       },
                       child: Container(
@@ -294,7 +295,7 @@ class  editprofileState extends State< editprofile> {
           });
         });
       }
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyProfile(),));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MyProfile(),));
     });
   }
 }
